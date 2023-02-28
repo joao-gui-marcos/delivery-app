@@ -8,7 +8,7 @@ function Login() {
   const [loginError, setLoginError] = useState(false);
   const PASSWORD_LENGTH = 6;
   const URL = 'http://localhost:3001/login';
-  const STATUS_NOT_FOUND = 400;
+  const STATUS_NOT_FOUND = 404;
   const STATUS_OK = 200;
 
   const handleEmailChange = (event) => {
