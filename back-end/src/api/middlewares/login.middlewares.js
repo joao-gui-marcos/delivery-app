@@ -11,6 +11,17 @@ const validateLoginFields = async (req, res, next) => {
   return next();
 };
 
+const validateName = async (req, res, next) => {
+  const { name } = req.body;
+
+  if (name.length < 12) {
+    return res.status(409).json({ message: 'Bad Request' });
+  }
+
+  return next();
+};
+
 module.exports = {
   validateLoginFields,
+  validateName,
 };
