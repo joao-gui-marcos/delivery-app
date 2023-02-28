@@ -5,7 +5,11 @@ function Login() {
   const history = useHistory();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loginError, setLoginError] = useState(false);
   const PASSWORD_LENGTH = 6;
+  const URL = 'http://localhost:3001/login';
+  const STATUS_NOT_FOUND = 400;
+  const STATUS_OK = 200;
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
@@ -15,23 +19,29 @@ function Login() {
     setPassword(event.target.value);
   };
 
+  // com fetch
   const handleApiLogin = () => {
-    fetch('/api/login', {
+    fetch(URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ email, password }),
     })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log('Login successful', data);
+      .then((response) => {
+        if (response.status === STATUS_OK) {
+          console.log('Login successful');
+          history.push('/customer/products');
         // TODO: Update user authentication status
         // TODO: Redirect user to home page
+        }
+        if (response.status === STATUS_NOT_FOUND) {
+          console.log('Login failed');
+          setLoginError(true);
+        }
       })
       .catch((error) => {
         console.error('Login failed', error);
-        setError('Login failed. Please try again.');
       });
   };
 
@@ -96,6 +106,14 @@ function Login() {
       >
         Ainda não tenho conta
       </button>
+      {
+        loginError && (
+          <p
+            data-testid="common_login__element-invalid-email"
+          >
+            Invalid credentials
+          </p>)
+      }
     </div>
   );
 }
