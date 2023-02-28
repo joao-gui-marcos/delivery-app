@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
 
-function Login() {
-  const history = useHistory();
+function Register() {
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const PASSWORD_LENGTH = 6;
+  const NAME_LENGTH = 12;
+
+  const handleNameChange = (event) => {
+    setName(event.target.value);
+  };
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
@@ -15,15 +19,8 @@ function Login() {
     setPassword(event.target.value);
   };
 
-  const handleLogin = () => {
-    console.log('Logging in with email:', email, 'and password:', password);
+  const handleRegister = () => {
     // TODO: Implement login logic
-  };
-
-  const handleSignup = () => {
-    console.log('Navigating to signup page');
-    // TODO: Implement navigation logic to signup page
-    history.push('/register');
   };
 
   const isEmailValid = (myEmail) => {
@@ -34,14 +31,28 @@ function Login() {
 
   const isPasswordValid = (myPassword) => myPassword.length >= PASSWORD_LENGTH;
 
-  const isLoginDisabled = !isEmailValid(email) || !isPasswordValid(password);
+  const isNameValid = (myName) => myName.length >= NAME_LENGTH;
+
+  const isRegisterDisabled = !isEmailValid(email)
+  || !isPasswordValid(password) || !isNameValid(name);
 
   return (
     <div>
-      <label htmlFor="email-input">
-        Login:
+      <label htmlFor="name-input">
+        Nome:
         <input
-          data-testid="common_login__input-email"
+          data-testid="common_register__input-name"
+          id="name-input"
+          type="name"
+          value={ name }
+          onChange={ handleNameChange }
+        />
+      </label>
+      <br />
+      <label htmlFor="email-input">
+        Email:
+        <input
+          data-testid="common_register__input-email"
           id="email-input"
           type="email"
           value={ email }
@@ -52,7 +63,7 @@ function Login() {
       <label htmlFor="password-input">
         Senha:
         <input
-          data-testid="common_login__input-password"
+          data-testid="common_register__input-password"
           id="password-input"
           type="password"
           value={ password }
@@ -61,22 +72,15 @@ function Login() {
       </label>
       <br />
       <button
-        data-testid="common_login__button-login"
-        onClick={ handleLogin }
+        data-testid="common_register__button-register"
+        onClick={ handleRegister }
         type="button"
-        disabled={ isLoginDisabled }
+        disabled={ isRegisterDisabled }
       >
-        LOGIN
-      </button>
-      <button
-        data-testid="common_login__button-register"
-        onClick={ handleSignup }
-        type="button"
-      >
-        Ainda não tenho conta
+        CADASTRAR
       </button>
     </div>
   );
 }
 
-export default Login;
+export default Register;
