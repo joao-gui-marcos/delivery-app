@@ -15,9 +15,30 @@ function Login() {
     setPassword(event.target.value);
   };
 
+  const handleApiLogin = () => {
+    fetch('/api/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email, password }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('Login successful', data);
+        // TODO: Update user authentication status
+        // TODO: Redirect user to home page
+      })
+      .catch((error) => {
+        console.error('Login failed', error);
+        setError('Login failed. Please try again.');
+      });
+  };
+
   const handleLogin = () => {
     console.log('Logging in with email:', email, 'and password:', password);
     // TODO: Implement login logic
+    handleApiLogin();
   };
 
   const handleSignup = () => {
