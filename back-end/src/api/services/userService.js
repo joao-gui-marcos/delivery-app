@@ -14,14 +14,14 @@ const login = async ({ email, password }) => {
       { exclude: ['password'] },
   });
 
-  const { dataValues } = userInfo;
+  // const { dataValues } = userInfo;
 
   // if (!userInfo) return { statusCode: 400, message: 'Invalid fields' };
   if (!userInfo) throw new NotFound('Invalid fields');
 
-  const token = createToken(dataValues);
+  const token = createToken(userInfo.dataValues);
 
-  return { statusCode: 200, data: { ...dataValues, token } };
+  return { statusCode: 200, data: { ...userInfo.dataValues, token } };
 };
 
 const createUser = async (newUser) => {
