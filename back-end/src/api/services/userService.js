@@ -3,7 +3,7 @@ const { Op } = require('sequelize');
 // const BadRequest = require('./utils/errors/BadRequest');
 const NotFound = require('./utils/errors/NotFound');
 const { User } = require('../../database/models');
-const createToken = require('./utils/validadeJWT');
+const { createToken } = require('./utils/validadeJWT');
 const Conflict = require('./utils/errors/Conflict');
 
 const login = async ({ email, password }) => {
