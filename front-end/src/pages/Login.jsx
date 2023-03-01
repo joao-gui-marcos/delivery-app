@@ -31,6 +31,12 @@ function Login() {
         if (response.status === STATUS_OK) {
           response.json().then((data) => {
             console.log('Login successful');
+            localStorage.setItem('user', JSON.stringify({
+              name: data.name,
+              email: data.email,
+              role: data.role,
+              token: data.token,
+            }));
             if (data.role === 'customer') {
               history.push('/customer/products');
             } else if (data.role === 'administrator') {
