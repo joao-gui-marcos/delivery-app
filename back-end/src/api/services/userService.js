@@ -32,7 +32,7 @@ const createUser = async (newUser) => {
   if (verifyIfExists) throw new Conflict('User already exists');
 
   const { dataValues: { name, email, role } } = await User.create({
-    name: newUser.name, email: newUser.email, password: md5(newUser.password), role: 'costumer',
+    name: newUser.name, email: newUser.email, password: md5(newUser.password), role: 'customer',
   });
 
   const token = createToken({ name, email, role });

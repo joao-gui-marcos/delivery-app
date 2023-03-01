@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 function Register() {
+  const history = useHistory();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [registerError, setRegisterError] = useState(false);
   const PASSWORD_LENGTH = 6;
   const NAME_LENGTH = 12;
 
@@ -20,7 +23,44 @@ function Register() {
   };
 
   const handleRegister = () => {
-    // TODO: Implement login logic
+    // TODO: Implement register logic
+    const url = 'http://localhost:3001/register'; // Replace with your API URL
+    const userData = {
+      name,
+      email,
+      password,
+    };
+
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(userData),
+    })
+      .then((response) => {
+        if (response.ok) {
+          console.log('User registered successfully');
+          response.json().then((data) => {
+            console.log('Login successful');
+            if (data.role === 'customer') {
+              history.push('/customer/products');
+            } else if (data.role === 'administrator') {
+              history.push('/admin/dashboard');
+            } else if (data.role === 'seller') {
+              history.push('/seller/products');
+            } else {
+              console.error('Invalid role:', data.role);
+            }
+          });
+        } else {
+          console.error('User registration failed');
+          setRegisterError(true);
+        }
+      })
+      .catch((error) => {
+        console.error('User registration failed', error);
+      });
   };
 
   const isEmailValid = (myEmail) => {
@@ -39,7 +79,7 @@ function Register() {
   return (
     <div>
       <label htmlFor="name-input">
-        Nome:
+        Name:
         <input
           data-testid="common_register__input-name"
           id="name-input"
@@ -61,7 +101,7 @@ function Register() {
       </label>
       <br />
       <label htmlFor="password-input">
-        Senha:
+        Password:
         <input
           data-testid="common_register__input-password"
           id="password-input"
@@ -77,8 +117,16 @@ function Register() {
         type="button"
         disabled={ isRegisterDisabled }
       >
-        CADASTRAR
+        SIGN IN
       </button>
+      {
+        registerError && (
+          <p
+            data-testid="common_register__element-invalid_register"
+          >
+            User already exists
+          </p>)
+      }
     </div>
   );
 }

@@ -87,7 +87,7 @@ function Login() {
       </label>
       <br />
       <label htmlFor="password-input">
-        Senha:
+        Password:
         <input
           data-testid="common_login__input-password"
           id="password-input"
@@ -110,7 +110,7 @@ function Login() {
         onClick={ handleSignup }
         type="button"
       >
-        Ainda não tenho conta
+        SIGN IN
       </button>
       {
         loginError && (
