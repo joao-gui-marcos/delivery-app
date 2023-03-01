@@ -19,7 +19,6 @@ function Login() {
     setPassword(event.target.value);
   };
 
-  // com fetch
   const handleApiLogin = () => {
     fetch(URL, {
       method: 'POST',
@@ -30,12 +29,19 @@ function Login() {
     })
       .then((response) => {
         if (response.status === STATUS_OK) {
-          console.log('Login successful');
-          history.push('/customer/products');
-        // TODO: Update user authentication status
-        // TODO: Redirect user to home page
-        }
-        if (response.status === STATUS_NOT_FOUND) {
+          response.json().then((data) => {
+            console.log('Login successful');
+            if (data.role === 'customer') {
+              history.push('/customer/products');
+            } else if (data.role === 'administrator') {
+              history.push('/admin/dashboard');
+            } else if (data.role === 'seller') {
+              history.push('/seller/products');
+            } else {
+              console.error('Invalid role:', data.role);
+            }
+          });
+        } else if (response.status === STATUS_NOT_FOUND) {
           console.log('Login failed');
           setLoginError(true);
         }
