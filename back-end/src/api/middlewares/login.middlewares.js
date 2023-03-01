@@ -21,7 +21,18 @@ const validateName = async (req, res, next) => {
   return next();
 };
 
+const verifyAutorization = (req, res, next) => {
+  const { authorization } = req.headers;
+
+  if (!authorization) {
+    return res.status(401).json({ message: 'Unauthorized' });
+  }
+
+  return next();
+};
+
 module.exports = {
   validateLoginFields,
   validateName,
+  verifyAutorization,
 };

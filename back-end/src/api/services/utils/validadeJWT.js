@@ -11,4 +11,12 @@ const createToken = (user) => {
   return token;
 };
 
-module.exports = createToken;
+const validateToken = (token) => {
+  const secret = fs.readFileSync('./jwt.evaluation.key');
+
+  const payload = jwt.verify(token, secret);
+
+  return payload;
+};
+
+module.exports = { createToken, validateToken };
