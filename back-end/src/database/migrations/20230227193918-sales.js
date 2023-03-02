@@ -49,7 +49,7 @@ module.exports = {
         allowNull: false,
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
-        field: 'user_id',
+        field: 'seller_id',
         references: {
           model: 'users',
           key: 'id',
