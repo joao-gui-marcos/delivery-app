@@ -21,13 +21,13 @@ function CustomerProducts() {
   return (
     <div>
       <CustomerNavBar name={ JSON.parse(userData).name } />
-      Customer Products
       {products.map((product) => (
         <ProductCard
           key={ product.id }
           name={ product.name }
           price={ product.price }
           image={ product.urlImage }
+          id={ product.id }
         />
       ))}
     </div>
