@@ -1,28 +1,18 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-// import Cart from '../entities/cart';
 
 function ProductCard({ name, price, image, id, onUpdateCart }) {
-  // const [quantity, setQuantity] = useState(0);
   const [quantity, setQuantity] = useState(
     JSON.parse(localStorage.getItem('cart'))?.find((item) => item
       .id === id)?.quantity || 0,
   );
 
   const handleIncreaseQuantity = () => {
-    // const newQuantity = quantity + 1;
-    // setQuantity(newQuantity);
-    // Cart.addItem({ id, name, price, quantity: newQuantity });
     setQuantity(quantity + 1);
     onUpdateCart({ id, name, price, quantity: quantity + 1 });
   };
 
   const handleDecreaseQuantity = () => {
-    // if (quantity > 0) {
-    //   const newQuantity = quantity - 1;
-    //   setQuantity(newQuantity);
-    //   Cart.addItem({ id, name, price, quantity: newQuantity });
-    // }
     if (quantity > 0) {
       setQuantity(quantity - 1);
       onUpdateCart({ id, name, price, quantity: quantity - 1 });
@@ -30,9 +20,6 @@ function ProductCard({ name, price, image, id, onUpdateCart }) {
   };
 
   const handleQuantityChange = ({ target: { value } }) => {
-    // const newQuantity = parseInt(value, 10);
-    // setQuantity(newQuantity);
-    // Cart.addItem({ id, name, price, quantity: newQuantity });
     const newQuantity = parseInt(value, 10);
     setQuantity(newQuantity);
     onUpdateCart({ id, name, price, quantity: newQuantity });

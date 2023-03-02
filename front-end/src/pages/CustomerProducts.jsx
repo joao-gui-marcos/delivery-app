@@ -2,16 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import CustomerNavBar from '../components/CustomerNavBar';
 import ProductCard from '../components/ProductCard';
-// import CartTotalButton from '../components/CartTotalButton';
+import Cart from '../entities/cart';
 
 function CustomerProducts() {
   const history = useHistory();
   const [products, setProducts] = useState([]);
   const userData = localStorage.getItem('user');
-  const [cart, setCart] = useState(JSON.parse(localStorage.getItem('cart')) || []);
-  const [cartVersion, setCartVersion] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
-  const INDEX = -1;
 
   useEffect(() => {
     fetch('http://localhost:3001/products', {
@@ -25,32 +22,24 @@ function CustomerProducts() {
       .catch((error) => console.error('Error fetching products', error));
   }, [userData]);
 
-  useEffect(() => {
-    localStorage.setItem('cart', JSON.stringify(cart));
-    // setTotalPrice(
-    //   cart.reduce((total, item) => total
-    //   + (item.quantity * parseFloat(item.price.replace('.', ','))), 0)
-    //     .toLocaleString('pt-BR', { minimumFractionDigits: 2 }),
-    // );
-    const tot = cart.reduce((total, item) => total
-     + (item.quantity * parseFloat(item.price)), 0).toFixed(2);
+  const formatCartValue = () => {
+    const items = Cart.getItems();
+    const totalCartPrice = items.reduce((total, item) => total
+      + (item.quantity * parseFloat(item.price)), 0).toFixed(2);
 
-    const formattedTotal = Number(tot)
+    const formattedTotal = Number(totalCartPrice)
       .toLocaleString('pt-BR', { minimumFractionDigits: 2 });
 
     setTotalPrice(formattedTotal);
-  }, [cart]);
+  };
 
-  const updateCartItem = (productId, { id, name, price, quantity }) => {
-    const itemIndex = cart.findIndex((item) => item.id === productId);
-    if (itemIndex === INDEX) {
-      setCart([...cart, { id, name, price, quantity }]);
-    } else {
-      const updatedCart = [...cart];
-      updatedCart[itemIndex].quantity = quantity;
-      setCart(updatedCart);
-    }
-    setCartVersion(cartVersion + 1);
+  useEffect(() => {
+    formatCartValue();
+  }, []);
+
+  const updateCartItem = ({ id, name, price, quantity }) => {
+    Cart.addItem({ id, name, price, quantity });
+    formatCartValue();
   };
 
   const handleClick = () => {
@@ -67,7 +56,7 @@ function CustomerProducts() {
           price={ product.price }
           image={ product.urlImage }
           id={ product.id }
-          onUpdateCart={ (quantity) => updateCartItem(product.id, quantity) }
+          onUpdateCart={ (item) => updateCartItem(item) }
         />
       ))}
       <button
