@@ -22,7 +22,7 @@ const createOrder = async (order) => {
   await Promise.all(products.map(async (e) => SaleProduct
     .create({ saleId: insertOrder.id, productId: e.id, quantity: e.quantity })));
 
-    return { statusCode: 200, data: insertOrder };
+    return { statusCode: 200, data: insertOrder.id };
 };
 
 const findOrderById = async (id) => {
@@ -33,7 +33,30 @@ const findOrderById = async (id) => {
   return { statusCode: 200, data: orderById };
 };
 
+const updateOrder = async (id, status) => {
+  const [updatedOrder] = await Sale.update({ status }, {
+    where: { id },
+  });
+
+  console.log(updatedOrder);
+
+  if (!updatedOrder) throw new NotFound('not found order');
+
+  return { statusCode: 200, data: status };
+};
+
+const requestSaleInformationFromIdCustomer = async (id) => {
+  const [orderById] = await Sale.findAll({ where: { userId: id } });
+  console.log(orderById);
+
+  if (!orderById) throw new NotFound('not found');
+
+  return { statusCode: 200, data: orderById };
+};
+
 module.exports = {
   createOrder,
   findOrderById,
+  updateOrder,
+  requestSaleInformationFromIdCustomer,
 };
