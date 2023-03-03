@@ -8,10 +8,8 @@ const Conflict = require('./utils/errors/Conflict');
 
 const login = async ({ email, password }) => {
   const userInfo = await User.findOne({
-    where:
-      { email, password: md5(password) },
-    attributes:
-      { exclude: ['password'] },
+    where: { email, password: md5(password) },
+    attributes: { exclude: ['password'] },
   });
 
   // const { dataValues } = userInfo;
@@ -25,14 +23,19 @@ const login = async ({ email, password }) => {
 };
 
 const createUser = async (newUser) => {
-  const verifyIfExists = await User.findOne(
-    { where: { [Op.or]: [{ name: newUser.name }, { email: newUser.email }] } },
-  );
+  const verifyIfExists = await User.findOne({
+    where: { [Op.or]: [{ name: newUser.name }, { email: newUser.email }] },
+  });
 
   if (verifyIfExists) throw new Conflict('User already exists');
 
-  const { dataValues: { name, email, role } } = await User.create({
-    name: newUser.name, email: newUser.email, password: md5(newUser.password), role: 'customer',
+  const {
+    dataValues: { name, email, role },
+  } = await User.create({
+    name: newUser.name,
+    email: newUser.email,
+    password: md5(newUser.password),
+    role: 'customer',
   });
 
   const token = createToken({ name, email, role });
@@ -40,7 +43,14 @@ const createUser = async (newUser) => {
   return { statusCode: 201, data: { name, email, role, token } };
 };
 
+const findSeller = async (role) => {
+  const seller = await User.findOne({ where: { role } });
+
+  return { statusCode: 200, data: seller };
+};
+
 module.exports = {
   login,
   createUser,
+  findSeller,
 };
