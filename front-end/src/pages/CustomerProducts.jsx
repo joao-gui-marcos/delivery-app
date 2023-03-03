@@ -22,20 +22,13 @@ function CustomerProducts() {
       .catch((error) => console.error('Error fetching products', error));
   }, [userData]);
 
-  const formatCartValue = () => {
-    const totalCartValue = Cart.getTotal();
-    const formatToBRL = Number(totalCartValue)
-      .toLocaleString('pt-BR', { minimumFractionDigits: 2 });
-    setTotalPrice(formatToBRL);
-  };
-
   useEffect(() => {
-    formatCartValue();
+    setTotalPrice(Cart.getTotal());
   }, []);
 
   const updateCartItem = ({ id, name, price, quantity }) => {
     Cart.addItem({ id, name, price, quantity });
-    formatCartValue();
+    setTotalPrice(Cart.getTotal());
   };
 
   const handleClick = () => {

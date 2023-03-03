@@ -31,7 +31,9 @@ const Cart = {
   getTotal() {
     const items = this.getItems();
     const total = items.reduce((acc, item) => acc + item.price * item.quantity, 0);
-    return total.toFixed(2);
+    const formatToBRL = Number(total)
+      .toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+    return formatToBRL;
   },
   getItemQuantity(id) {
     const items = this.getItems();
