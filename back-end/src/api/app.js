@@ -10,6 +10,7 @@ const errorHandler = require('./middlewares/ErrorHandler');
 const app = express();
 
 app.use(express.json());
+app.use('/images', express.static('images'));
 app.use(cors());
 
 app.get('/coffee', (_req, res) => res.status(418).end());

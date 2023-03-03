@@ -1,7 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-function CustomerNavBar() {
+function CustomerNavBar({ name }) {
+  const history = useHistory();
+  const handleLogout = () => {
+    localStorage.removeItem('user');
+    history.push('/login');
+    // redirect the user to the login page or somewhere else
+  };
+
   return (
     <nav>
       <ul>
@@ -24,12 +32,13 @@ function CustomerNavBar() {
         <li data-testid="customer_products__element-navbar-user-full-name">
           Logged in as
           {' '}
-          Jose
+          {name}
         </li>
         <li>
           <button
             data-testid="customer_products__element-navbar-link-logout"
             type="button"
+            onClick={ handleLogout }
           >
             Logout
           </button>
@@ -38,5 +47,9 @@ function CustomerNavBar() {
     </nav>
   );
 }
+
+CustomerNavBar.propTypes = {
+  name: PropTypes.string.isRequired,
+};
 
 export default CustomerNavBar;
