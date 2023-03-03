@@ -28,6 +28,19 @@ const Cart = {
   clear() {
     this.setItems([]);
   },
+  getTotal() {
+    const items = this.getItems();
+    const total = items.reduce((acc, item) => acc + item.price * item.quantity, 0);
+    return total.toFixed(2);
+  },
+  getItemQuantity(id) {
+    const items = this.getItems();
+    const index = items.findIndex((item) => item.id === id);
+    if (index !== NO_NEGATIVE_VALUES) {
+      return items[index].quantity;
+    }
+    return 0;
+  },
 };
 
 export default Cart;

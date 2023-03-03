@@ -23,14 +23,10 @@ function CustomerProducts() {
   }, [userData]);
 
   const formatCartValue = () => {
-    const items = Cart.getItems();
-    const totalCartPrice = items.reduce((total, item) => total
-      + (item.quantity * parseFloat(item.price)), 0).toFixed(2);
-
-    const formattedTotal = Number(totalCartPrice)
+    const totalCartValue = Cart.getTotal();
+    const formatToBRL = Number(totalCartValue)
       .toLocaleString('pt-BR', { minimumFractionDigits: 2 });
-
-    setTotalPrice(formattedTotal);
+    setTotalPrice(formatToBRL);
   };
 
   useEffect(() => {
@@ -65,7 +61,7 @@ function CustomerProducts() {
         onClick={ handleClick }
         disabled={ totalPrice <= '0,00' }
       >
-        Total: $
+        Total: R$
         <span
           data-testid="customer_products__checkout-bottom-value"
         >

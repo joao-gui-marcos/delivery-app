@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import Cart from '../entities/cart';
 
 function ProductCard({ name, price, image, id, onUpdateCart }) {
-  const [quantity, setQuantity] = useState(
-    JSON.parse(localStorage.getItem('cart'))?.find((item) => item
-      .id === id)?.quantity || 0,
-  );
+  const [quantity, setQuantity] = useState(Cart.getItemQuantity(id));
 
   const handleIncreaseQuantity = () => {
     setQuantity(quantity + 1);
