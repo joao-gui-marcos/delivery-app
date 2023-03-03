@@ -16,7 +16,7 @@ const Cart = {
       // item already exists in cart, update quantity
       items[index].quantity = item.quantity;
     } else {
-      // item does not exist in cart, add it
+      // item does not exist in cart, add it.
       items.push(item);
     }
     this.setItems(items);
