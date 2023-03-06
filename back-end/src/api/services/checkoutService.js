@@ -38,8 +38,6 @@ const updateOrder = async (id, status) => {
     where: { id },
   });
 
-  console.log(updatedOrder);
-
   if (!updatedOrder) throw new NotFound('not found order');
 
   return { statusCode: 200, data: status };
@@ -47,7 +45,6 @@ const updateOrder = async (id, status) => {
 
 const requestSaleInformationFromIdCustomer = async (id) => {
   const [orderById] = await Sale.findAll({ where: { userId: id } });
-  console.log(orderById);
 
   if (!orderById) throw new NotFound('not found');
 
@@ -65,6 +62,8 @@ include: [{
     },
   }],
  });
+
+ if (!orderById) throw new NotFound('not found');
   return { statusCode: 200, data: orderById };
 };
 
