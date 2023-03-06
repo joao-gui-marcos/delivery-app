@@ -28,6 +28,11 @@ const Cart = {
   clear() {
     this.setItems([]);
   },
+  getTotalBRLFormated() {
+    const items = this.getItems();
+    const total = items.reduce((acc, item) => acc + item.price * item.quantity, 0);
+    return parseFloat(total.toFixed(2));
+  },
   getTotal() {
     const items = this.getItems();
     const total = items.reduce((acc, item) => acc + item.price * item.quantity, 0);

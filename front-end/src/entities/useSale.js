@@ -8,7 +8,7 @@ const useSale = () => {
   const { addressNumber } = useContext(AppContext);
   const userData = JSON.parse(localStorage.getItem('user'));
   const products = cart.getItems();
-  const totalPrice = cart.getTotal();
+  const totalPrice = cart.getTotalBRLFormated();
 
   return {
     userName: userData.name,

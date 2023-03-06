@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import AppContext from './AppContext';
 
 function Provider({ children }) {
-  const [seller, setSeller] = useState('Seller 1');
+  const [seller, setSeller] = useState('Fulana Pereira');
   const [address, setAddress] = useState('');
-  const [addressNumber, setAddressNumber] = useState(0);
+  const [addressNumber, setAddressNumber] = useState('');
 
   const context = useMemo(() => ({
     seller,

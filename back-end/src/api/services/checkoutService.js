@@ -22,7 +22,7 @@ const createOrder = async (order) => {
   await Promise.all(products.map(async (e) => SaleProduct
     .create({ saleId: insertOrder.id, productId: e.id, quantity: e.quantity })));
 
-    return { statusCode: 200, data: insertOrder.id };
+    return { statusCode: 201, data: insertOrder.id };
 };
 
 const findOrderById = async (id) => {

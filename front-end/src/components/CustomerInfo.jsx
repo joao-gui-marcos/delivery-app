@@ -29,9 +29,8 @@ function CustomerInfoForm() {
           value={ seller }
           onChange={ handleSellerChange }
         >
-          <option value="Seller 1">Seller 1</option>
-          <option value="Seller 2">Seller 2</option>
-          <option value="Seller 3">Seller 3</option>
+          <option value="Fulana Pereira">Fulana Pereira</option>
+          <option value="Fulana Pereira">Fulana Pereira</option>
         </select>
       </label>
       <label htmlFor="address">
