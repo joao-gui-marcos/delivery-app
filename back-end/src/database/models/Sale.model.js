@@ -8,6 +8,8 @@ module.exports = (sequelize, DataTypes) => {
       deliveryNumber: DataTypes.STRING,
       saleDate: DataTypes.DATE,
       status: DataTypes.STRING,
+      userId: {type: DataTypes.INTEGER, foreignKey: true},
+      sellerId: {type: DataTypes.INTEGER, foreignKey: true},
     },
     {
       timestamps: false,
