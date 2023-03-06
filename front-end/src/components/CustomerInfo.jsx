@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
+import AppContext from '../contexts/AppContext';
 
 function CustomerInfoForm() {
-  const [seller, setSeller] = useState('Seller 1');
-  const [address, setAddress] = useState('');
-  const [addressNumber, setAddressNumber] = useState('');
+  const { seller, setSeller } = useContext(AppContext);
+  const { address, setAddress } = useContext(AppContext);
+  const { addressNumber, setAddressNumber } = useContext(AppContext);
 
   const handleSellerChange = (event) => {
     setSeller(event.target.value);
