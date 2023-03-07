@@ -23,12 +23,12 @@ function CustomerProducts() {
   }, [userData]);
 
   useEffect(() => {
-    setTotalPrice(Cart.getTotal());
+    setTotalPrice(Cart.getTotalBRLFormated());
   }, []);
 
   const updateCartItem = ({ id, name, price, quantity }) => {
     Cart.addItem({ id, name, price, quantity });
-    setTotalPrice(Cart.getTotal());
+    setTotalPrice(Cart.getTotalBRLFormated());
   };
 
   const handleClick = () => {

@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import cart from './cart';
+import cart from '../entities/cart';
 import AppContext from '../contexts/AppContext';
 
 const useSale = () => {
@@ -8,7 +8,7 @@ const useSale = () => {
   const { addressNumber } = useContext(AppContext);
   const userData = JSON.parse(localStorage.getItem('user'));
   const products = cart.getItems();
-  const totalPrice = cart.getTotalBRLFormated();
+  const totalPrice = cart.getTotal();
 
   return {
     userName: userData.name,

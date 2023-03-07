@@ -31,14 +31,14 @@ const Cart = {
   getTotalBRLFormated() {
     const items = this.getItems();
     const total = items.reduce((acc, item) => acc + item.price * item.quantity, 0);
-    return parseFloat(total.toFixed(2));
+    const formatToBRL = Number(total)
+      .toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+    return formatToBRL;
   },
   getTotal() {
     const items = this.getItems();
     const total = items.reduce((acc, item) => acc + item.price * item.quantity, 0);
-    const formatToBRL = Number(total)
-      .toLocaleString('pt-BR', { minimumFractionDigits: 2 });
-    return formatToBRL;
+    return parseFloat(total.toFixed(2));
   },
   getItemQuantity(id) {
     const items = this.getItems();

@@ -16,7 +16,7 @@ const createOrder = async (order) => {
       deliveryAddress,
       deliveryNumber,
       saleDate: date,
-      status: 'pending',
+      status: 'Pendente',
     });
 
   await Promise.all(products.map(async (e) => SaleProduct

@@ -4,7 +4,7 @@ import CustomerCheckoutTable from '../components/CustomerCheckoutTable';
 import CustomerInfo from '../components/CustomerInfo';
 import CustomerNavBar from '../components/CustomerNavBar';
 import Cart from '../entities/cart';
-import useSale from '../entities/useSale';
+import useSale from '../hooks/useSale';
 
 function CustomerCheckout() {
   const history = useHistory();
@@ -13,7 +13,7 @@ function CustomerCheckout() {
   const { userName, totalPrice, deliveryAddress, deliveryNumber, products } = useSale();
 
   useEffect(() => {
-    setTotalCartPrice(Cart.getTotal());
+    setTotalCartPrice(Cart.getTotalBRLFormated());
   }, []);
 
   const handleClick = async () => {
@@ -38,7 +38,6 @@ function CustomerCheckout() {
         throw new Error('Error submitting order');
       }
       const id = Number(await response.json());
-      console.log(typeof id);
       history.push(`/customer/orders/${id}`);
     } catch (error) {
       console.error(error);
@@ -48,7 +47,9 @@ function CustomerCheckout() {
   return (
     <div>
       <CustomerNavBar name={ userData.name } />
-      <CustomerCheckoutTable onRemoveItem={ () => setTotalCartPrice(Cart.getTotal()) } />
+      <CustomerCheckoutTable
+        onRemoveItem={ () => setTotalCartPrice(Cart.getTotalBRLFormated()) }
+      />
       <CustomerInfo />
       <span
         data-testid="customer_checkout__element-order-total-price"
