@@ -12,9 +12,6 @@ const login = async ({ email, password }) => {
     attributes: { exclude: ['password'] },
   });
 
-  // const { dataValues } = userInfo;
-
-  // if (!userInfo) return { statusCode: 400, message: 'Invalid fields' };
   if (!userInfo) throw new NotFound('Invalid fields');
 
   const token = createToken(userInfo.dataValues);
@@ -43,14 +40,14 @@ const createUser = async (newUser) => {
   return { statusCode: 201, data: { name, email, role, token } };
 };
 
-const findSeller = async (role) => {
-  const seller = await User.findOne({ where: { role } });
+const getAllSellers = async () => {
+  const sellers = await User.findAll({ where: { role: 'seller' } });
 
-  return { statusCode: 200, data: seller };
+  return { statusCode: 200, data: sellers };
 };
 
 module.exports = {
   login,
   createUser,
-  findSeller,
+  getAllSellers,
 };
