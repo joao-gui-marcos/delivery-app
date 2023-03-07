@@ -36,9 +36,18 @@ const requestSaleInformationFromIdCustomer = async (req, res) => {
   return res.status(statusCode).json(data);
 };
 
+const requestSaleProductsInformation = async (req, res) => {
+  const { id } = req.params;
+
+  const { statusCode, data } = await checkoutService.requestSaleProductsInformation(id);
+
+  return res.status(statusCode).json(data);
+};
+
 module.exports = {
   createOrder,
   findOrderById,
   updateOrder,
   requestSaleInformationFromIdCustomer,
+  requestSaleProductsInformation,
 };

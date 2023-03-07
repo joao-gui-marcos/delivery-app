@@ -1,4 +1,4 @@
-const { Sale, SaleProduct, User } = require('../../database/models');
+const { Sale, SaleProduct, User, Product } = require('../../database/models');
 const NotFound = require('./utils/errors/NotFound');
 // const { validateToken } = require('./utils/validadeJWT');
 
@@ -38,8 +38,6 @@ const updateOrder = async (id, status) => {
     where: { id },
   });
 
-  console.log(updatedOrder);
-
   if (!updatedOrder) throw new NotFound('not found order');
 
   return { statusCode: 200, data: status };
@@ -47,10 +45,25 @@ const updateOrder = async (id, status) => {
 
 const requestSaleInformationFromIdCustomer = async (id) => {
   const [orderById] = await Sale.findAll({ where: { userId: id } });
-  console.log(orderById);
 
   if (!orderById) throw new NotFound('not found');
 
+  return { statusCode: 200, data: orderById };
+};
+
+const requestSaleProductsInformation = async (id) => {
+  const orderById = await Sale.findByPk(id, {
+include: [{
+    model: Product, 
+  as: 'products',
+  attributes: { exclude: ['urlImage', 'deliveryAddress', 'deliveryNumber', 'userId'] },
+  through: {
+      attributes: ['quantity'],
+    },
+  }],
+ });
+
+ if (!orderById) throw new NotFound('not found');
   return { statusCode: 200, data: orderById };
 };
 
@@ -59,4 +72,5 @@ module.exports = {
   findOrderById,
   updateOrder,
   requestSaleInformationFromIdCustomer,
+  requestSaleProductsInformation,
 };
