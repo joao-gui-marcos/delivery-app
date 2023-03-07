@@ -1,5 +1,7 @@
 require('dotenv/config');
 
+const { validateToken } = require('../services/utils/validadeJWT');
+
 const validateLoginFields = async (req, res, next) => {
   const regex = /\S+@\S+\.\S+/;
   const { email, password } = req.body;
@@ -24,7 +26,13 @@ const validateName = async (req, res, next) => {
 const verifyAutorization = (req, res, next) => {
   const { authorization } = req.headers;
 
+  const validate = validateToken(authorization);
+
   if (!authorization) {
+    return res.status(401).json({ message: 'Unauthorized' });
+  }
+
+  if (!validate) {
     return res.status(401).json({ message: 'Unauthorized' });
   }
 
