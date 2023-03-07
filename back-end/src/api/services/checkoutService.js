@@ -25,13 +25,14 @@ const createOrder = async (order) => {
     return { statusCode: 201, data: insertOrder.id };
 };
 
-const findOrderById = async (id) => {
-  const orderById = await Sale.findByPk(id);
+// Ver se essa função será usada posteriormente
+// const findOrderById = async (id) => {
+//   const orderById = await Sale.findByPk(id);
 
-  if (!orderById) throw new NotFound('not found');
+//   if (!orderById) throw new NotFound('not found');
 
-  return { statusCode: 200, data: orderById };
-};
+//   return { statusCode: 200, data: orderById };
+// };
 
 const updateOrder = async (id, status) => {
   const [updatedOrder] = await Sale.update({ status }, {
@@ -43,15 +44,21 @@ const updateOrder = async (id, status) => {
   return { statusCode: 200, data: status };
 };
 
-const requestSaleInformationFromIdCustomer = async (id) => {
-  const [orderById] = await Sale.findAll({ where: { userId: id } });
+const getOrderByCustomer = async (id) => {
+  const orderById = await Sale.findAll({ where: { userId: id } });
 
   if (!orderById) throw new NotFound('not found');
 
   return { statusCode: 200, data: orderById };
 };
 
-const requestSaleProductsInformation = async (id) => {
+const getOrderBySeller = async (id) => {
+  const orderBySeller = await Sale.findAll({ where: { sellerId: id } });
+
+  return { statusCode: 200, data: orderBySeller };
+};
+
+const getOrderById = async (id) => {
   const orderById = await Sale.findByPk(id, {
 include: [{
     model: Product, 
@@ -69,8 +76,9 @@ include: [{
 
 module.exports = {
   createOrder,
-  findOrderById,
+  /* findOrderById */
   updateOrder,
-  requestSaleInformationFromIdCustomer,
-  requestSaleProductsInformation,
+  getOrderByCustomer,
+  getOrderBySeller,
+  getOrderById,
 };
