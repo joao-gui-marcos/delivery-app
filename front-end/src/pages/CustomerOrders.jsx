@@ -1,42 +1,48 @@
 import React, { useState, useEffect } from 'react';
 import CustomerNavBar from '../components/CustomerNavBar';
 import OrderCard from '../components/OrderCard';
-import fetchOrders from '../services/api';
 
 function CustomerOrders() {
   const userData = localStorage.getItem('user');
   const [orders, setOrders] = useState([]);
 
-  // useEffect(() => {
-  //   const fetchOrdersData = async () => {
-  //     const data = await fetchOrders();
-  //     setOrders(data);
-  //   };
+  useEffect(() => {
+    const fetchOrders = () => {
+      fetch('http://localhost:3001/checkout', {
+        method: 'GET',
+        headers: {
+          Authorization: JSON.parse(userData).token,
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => setOrders(data))
+        .catch((error) => console.error('Error fetching orders', error));
+    };
+    fetchOrders();
+  }, [userData]);
 
-  //   fetchOrdersData();
-  // }, []);
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const day = date.getUTCDate().toString().padStart(2, '0');
+    const month = (date.getUTCMonth() + 1).toString().padStart(2, '0');
+    const year = date.getUTCFullYear();
+    return `${day}/${month}/${year}`;
+  };
 
   return (
     <div>
       <CustomerNavBar name={ JSON.parse(userData).name } />
       <div>
-        {orders.map((order) => (
+        {orders && orders.length !== 0 && orders.map((order) => (
           <OrderCard
             key={ order.id }
             orderId={ order.id }
-            orderStatus={ order.status }
-            orderDate={ order.date }
-            orderTotalPrice={ order.totalPrice }
+            status={ order.status }
+            saleDate={ formatDate(order.saleDate) }
+            totalPrice={ order.totalPrice }
           />
         ))}
       </div>
-      <OrderCard
-        orderId="1"
-        status="Pendente"
-        date="2022-02-28"
-        totalPrice="100.00"
-      />
-
     </div>
   );
 }

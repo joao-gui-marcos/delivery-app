@@ -44,7 +44,7 @@ const updateOrder = async (id, status) => {
 };
 
 const requestSaleInformationFromIdCustomer = async (id) => {
-  const [orderById] = await Sale.findAll({ where: { userId: id } });
+  const orderById = await Sale.findAll({ where: { userId: id } });
 
   if (!orderById) throw new NotFound('not found');
 

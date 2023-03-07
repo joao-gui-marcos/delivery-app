@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 
 function OrderCard(props) {
-  const { orderId, status, date, totalPrice } = props;
+  const { orderId, status, saleDate, totalPrice } = props;
   const history = useHistory();
 
   const handleClick = () => {
@@ -26,12 +26,15 @@ function OrderCard(props) {
       <p data-testid={ `customer_orders__element-order-date-${orderId}` }>
         Date:
         {' '}
-        {date}
+        {saleDate}
       </p>
       <p data-testid={ `customer_orders__element-card-price-${orderId}` }>
         Total Price:
         {' '}
-        {totalPrice}
+        <span>
+          {Number(totalPrice)
+            .toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
+        </span>
       </p>
     </button>
   );
@@ -40,8 +43,8 @@ function OrderCard(props) {
 OrderCard.propTypes = {
   orderId: PropTypes.number.isRequired,
   status: PropTypes.string.isRequired,
-  date: PropTypes.instanceOf(Date).isRequired,
-  totalPrice: PropTypes.number.isRequired,
+  saleDate: PropTypes.string.isRequired,
+  totalPrice: PropTypes.string.isRequired,
 
 };
 
