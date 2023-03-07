@@ -16,13 +16,13 @@ const createOrder = async (order) => {
       deliveryAddress,
       deliveryNumber,
       saleDate: date,
-      status: 'pending',
+      status: 'Pendente',
     });
 
   await Promise.all(products.map(async (e) => SaleProduct
     .create({ saleId: insertOrder.id, productId: e.id, quantity: e.quantity })));
 
-    return { statusCode: 200, data: insertOrder.id };
+    return { statusCode: 201, data: insertOrder.id };
 };
 
 const findOrderById = async (id) => {
