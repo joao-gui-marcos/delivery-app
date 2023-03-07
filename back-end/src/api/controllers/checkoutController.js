@@ -9,13 +9,13 @@ const createOrder = async (req, res) => {
   return res.status(statusCode).json(data);
 };
 
-const findOrderById = async (req, res) => {
-  const { id } = req.params;
+// const findOrderById = async (req, res) => {
+//   const { id } = req.params;
 
-  const { statusCode, data } = await checkoutService.findOrderById(id);
+//   const { statusCode, data } = await checkoutService.findOrderById(id);
 
-  return res.status(statusCode).json(data);
-};
+//   return res.status(statusCode).json(data);
+// };
 
 const updateOrder = async (req, res) => {
   const { id } = req.params;
@@ -26,28 +26,39 @@ const updateOrder = async (req, res) => {
   return res.status(statusCode).json(data);
 };
 
-const requestSaleInformationFromIdCustomer = async (req, res) => {
+const getOrderByCustomer = async (req, res) => {
   const token = req.headers.authorization;
 
   const { id } = validateToken(token);
 
-  const { statusCode, data } = await checkoutService.requestSaleInformationFromIdCustomer(id);
+  const { statusCode, data } = await checkoutService.getOrderByCustomer(id);
 
   return res.status(statusCode).json(data);
 };
 
-const requestSaleProductsInformation = async (req, res) => {
+const getOrderBySeller = async (req, res) => {
+  const token = req.headers.authorization;
+
+  const { id } = validateToken(token);
+
+  const { statusCode, data } = await checkoutService.getOrderBySeller(id);
+
+  return res.status(statusCode).json(data);
+};
+
+const getOrderById = async (req, res) => {
   const { id } = req.params;
 
-  const { statusCode, data } = await checkoutService.requestSaleProductsInformation(id);
+  const { statusCode, data } = await checkoutService.getOrderById(id);
 
   return res.status(statusCode).json(data);
 };
 
 module.exports = {
   createOrder,
-  findOrderById,
+  /* findOrderById */
   updateOrder,
-  requestSaleInformationFromIdCustomer,
-  requestSaleProductsInformation,
+  getOrderByCustomer,
+  getOrderBySeller,
+  getOrderById,
 };
