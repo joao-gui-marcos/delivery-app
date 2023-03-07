@@ -24,7 +24,7 @@ function Register() {
 
   const handleRegister = () => {
     // TODO: Implement register logic
-    const url = 'http://localhost:3001/register'; // Replace with your API URL
+    const url = 'http://localhost:3001/user'; // Replace with your API URL
     const userData = {
       name,
       email,

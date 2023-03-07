@@ -1,5 +1,5 @@
 const UserService = require('../services/userService');
-const { validateToken } = require('../services/utils/validadeJWT');
+// const { validateToken } = require('../services/utils/validadeJWT');
 
 const login = async (req, res) => {
   const { statusCode, data, message } = await UserService.login(req.body);
@@ -17,12 +17,8 @@ const createUser = async (req, res) => {
   return res.status(statusCode).json(data);
 };
 
-const findSeller = async (req, res) => {
-  const { authorization } = req.headers;
-
-  const { role } = validateToken(authorization);
-  if (role !== 'seller') { return res.status(401).json({ message: 'Seller not Found' }); }
-  const { statusCode, data } = await UserService.findSeller(role);
+const getAllSellers = async (_req, res) => {
+  const { statusCode, data } = await UserService.getAllSellers();
 
   return res.status(statusCode).json(data);
 };
@@ -30,5 +26,5 @@ const findSeller = async (req, res) => {
 module.exports = {
   login,
   createUser,
-  findSeller,
+  getAllSellers,
 };
