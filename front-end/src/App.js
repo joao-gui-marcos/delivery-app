@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import Provider from './contexts/AppProvider';
 import CustomerCheckout from './pages/CustomerCheckout';
+import CustomerOrders from './pages/CustomerOrders';
 import CustomerProducts from './pages/CustomerProducts';
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -18,6 +19,7 @@ function App() {
           <Route path="/register" component={ Register } />
           <Route path="/customer/products" component={ CustomerProducts } />
           <Route path="/customer/checkout" component={ CustomerCheckout } />
+          <Route path="/customer/orders" component={ CustomerOrders } />
         </Switch>
       </Router>
     </Provider>

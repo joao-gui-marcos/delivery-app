@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
 function Login() {
   const history = useHistory();
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState(localStorage
+    .getItem('user') ? JSON.parse(localStorage.getItem('user')).email : '');
   const [password, setPassword] = useState('');
   const [loginError, setLoginError] = useState(false);
   const PASSWORD_LENGTH = 6;
@@ -56,6 +57,13 @@ function Login() {
         console.error('Login failed', error);
       });
   };
+
+  useEffect(() => {
+    const userData = localStorage.getItem('user');
+    if (userData) {
+      history.push('/customer/products');
+    }
+  }, []);
 
   const handleLogin = () => {
     console.log('Logging in with email:', email, 'and password:', password);
