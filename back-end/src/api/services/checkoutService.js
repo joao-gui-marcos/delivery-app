@@ -1,4 +1,3 @@
-/* eslint-disable max-lines-per-function */
 const { Sale, SaleProduct, User, Product } = require('../../database/models');
 const NotFound = require('./utils/errors/NotFound');
 
@@ -70,27 +69,15 @@ include: [{
 
  if (!orderById) throw new NotFound('not found');
  
-  if (tokenId !== orderById.userId) {
-    throw new NotFound('not found');
-  }
+  if (tokenId !== orderById.userId) throw new NotFound('not found');
 
 const { name: sellerName } = await User.findOne({ where: { id: orderById.sellerId } });
 const { name: userName } = await User.findOne({ where: { id: orderById.userId } });
 
- const orderObj = {
-  id: orderById.id,
-  sellerName,
-  userName,
-  userId: orderById.userId,
-  totalPrice: orderById.totalPrice,
-  deliveryAddress: orderById.deliveryAddress,
-  deliveryNumber: orderById.deliveryNumber,
-  status: orderById.status,
-  date: orderById.saleDate,
-  products: orderById.products,
- };
+orderById.sellerId = sellerName;
+orderById.userId = userName;
 
-  return { statusCode: 200, data: orderObj };
+  return { statusCode: 200, data: orderById };
 };
 
 module.exports = {
