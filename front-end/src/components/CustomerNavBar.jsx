@@ -15,14 +15,17 @@ function CustomerNavBar({ name }) {
   return (
     <nav>
       <ul>
-        {userRole === 'customer' && <li>
-          <Link
-            data-testid="customer_products__element-navbar-link-products"
-            to="/customer/products"
-          >
-            Products
-          </Link>
-        </li>}
+        {userRole === 'customer'
+        && (
+          <li>
+            <Link
+              data-testid="customer_products__element-navbar-link-products"
+              to="/customer/products"
+            >
+              Products
+            </Link>
+          </li>
+        )}
         <li>
           <Link
             data-testid="customer_products__element-navbar-link-orders"
