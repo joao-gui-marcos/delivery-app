@@ -43,7 +43,7 @@ function Login() {
             } else if (data.role === 'administrator') {
               history.push('/admin/dashboard');
             } else if (data.role === 'seller') {
-              history.push('/seller/products');
+              history.push('/seller/orders');
             } else {
               console.error('Invalid role:', data.role);
             }
@@ -59,9 +59,17 @@ function Login() {
   };
 
   useEffect(() => {
-    const userData = localStorage.getItem('user');
+    const userData = JSON.parse(localStorage.getItem('user'));
     if (userData) {
-      history.push('/customer/products');
+      if (userData.role === 'customer') {
+        history.push('/customer/products');
+      } else if (userData.role === 'administrator') {
+        history.push('/admin/dashboard');
+      } else if (userData.role === 'seller') {
+        history.push('/seller/orders');
+      } else {
+        console.error('Invalid role:', userData.role);
+      }
     }
   }, []);
 
