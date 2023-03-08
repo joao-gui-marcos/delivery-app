@@ -66,7 +66,6 @@ function Login() {
   }, []);
 
   const handleLogin = () => {
-    console.log('Logging in with email:', email, 'and password:', password);
     // TODO: Implement login logic
     handleApiLogin();
   };

@@ -8,7 +8,7 @@ function CustomerOrders() {
 
   useEffect(() => {
     const fetchOrders = () => {
-      fetch('http://localhost:3001/checkout', {
+      fetch('http://localhost:3001/checkout/customer', {
         method: 'GET',
         headers: {
           Authorization: JSON.parse(userData).token,
