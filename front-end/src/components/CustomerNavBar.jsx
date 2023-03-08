@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 
 function CustomerNavBar({ name }) {
   const history = useHistory();
+  const userData = JSON.parse(localStorage.getItem('user'));
+  const userRole = userData.role;
   const handleLogout = () => {
     localStorage.removeItem('user');
     history.push('/login');
@@ -13,18 +15,21 @@ function CustomerNavBar({ name }) {
   return (
     <nav>
       <ul>
-        <li>
-          <Link
-            data-testid="customer_products__element-navbar-link-products"
-            to="/customer/products"
-          >
-            Products
-          </Link>
-        </li>
+        {userRole === 'customer'
+        && (
+          <li>
+            <Link
+              data-testid="customer_products__element-navbar-link-products"
+              to="/customer/products"
+            >
+              Products
+            </Link>
+          </li>
+        )}
         <li>
           <Link
             data-testid="customer_products__element-navbar-link-orders"
-            to="/customer/orders"
+            to={ userRole === 'customer' ? '/customer/orders' : '/seller/orders' }
           >
             Orders
           </Link>

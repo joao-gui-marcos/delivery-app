@@ -10,18 +10,19 @@ function CustomerOrderDetail() {
   const [order, setOrder] = useState(null);
 
   useEffect(() => {
-    async function fetchOrder() {
-      try {
-        const response = await fetch(`http://localhost:3001/checkout/order/${id}`);
-        const data = await response.json();
-        setOrder(data);
-      } catch (error) {
-        console.error(error);
-      }
-    }
-
-    fetchOrder();
-  }, [id]);
+    const fetchOrders = () => {
+      fetch(`http://localhost:3001/checkout/order/${id}`, {
+        method: 'GET',
+        headers: {
+          Authorization: JSON.parse(userData).token,
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => setOrder(data))
+        .catch((error) => console.error('Error fetching orders', error));
+    };
+    fetchOrders();
+  }, [userData]);
 
   if (!order) {
     return <div>Loading...</div>;
@@ -38,7 +39,7 @@ function CustomerOrderDetail() {
         status={ order.status }
       />
       <CustomerOrderDetailsTable items={ order.products } />
-      <button
+      <p
         type="button"
         data-testid="customer_order_details__element-order-total-price"
       >
@@ -48,7 +49,7 @@ function CustomerOrderDetail() {
           {Number(order.totalPrice)
             .toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
         </span>
-      </button>
+      </p>
     </div>
   );
 }
