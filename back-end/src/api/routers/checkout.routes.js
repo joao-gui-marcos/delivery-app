@@ -15,6 +15,6 @@ checkoutRouter.get('/customer', verifyAutorization, getOrderByCustomer);
 checkoutRouter.post('/', createOrder);
 // checkoutRouter.get('/:id', verifyAutorization, findOrderById);
 checkoutRouter.put('/:id', updateOrder);
-checkoutRouter.get('/order/:id', getOrderById);
+checkoutRouter.get('/order/:id', verifyAutorization, getOrderById);
 
 module.exports = checkoutRouter;
