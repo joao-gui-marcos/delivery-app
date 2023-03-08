@@ -1,5 +1,4 @@
 const UserService = require('../services/userService');
-// const { validateToken } = require('../services/utils/validadeJWT');
 
 const login = async (req, res) => {
   const { statusCode, data, message } = await UserService.login(req.body);
