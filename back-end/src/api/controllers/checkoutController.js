@@ -48,8 +48,10 @@ const getOrderBySeller = async (req, res) => {
 
 const getOrderById = async (req, res) => {
   const { id } = req.params;
+  const token = req.headers.authorization;
+  const { id: tokenId } = validateToken(token);
 
-  const { statusCode, data } = await checkoutService.getOrderById(id);
+  const { statusCode, data } = await checkoutService.getOrderById(id, tokenId);
 
   return res.status(statusCode).json(data);
 };

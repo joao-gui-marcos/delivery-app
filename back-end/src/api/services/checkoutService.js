@@ -1,6 +1,6 @@
+/* eslint-disable max-lines-per-function */
 const { Sale, SaleProduct, User, Product } = require('../../database/models');
 const NotFound = require('./utils/errors/NotFound');
-// const { validateToken } = require('./utils/validadeJWT');
 
 const createOrder = async (order) => {
   const { userName, sellerName, totalPrice, deliveryAddress, deliveryNumber, products } = order;
@@ -58,20 +58,39 @@ const getOrderBySeller = async (id) => {
   return { statusCode: 200, data: orderBySeller };
 };
 
-const getOrderById = async (id) => {
+const getOrderById = async (id, tokenId) => {
   const orderById = await Sale.findByPk(id, {
 include: [{
     model: Product, 
   as: 'products',
   attributes: { exclude: ['urlImage', 'deliveryAddress', 'deliveryNumber', 'userId'] },
-  through: {
-      attributes: ['quantity'],
-    },
-  }],
+  through: { attributes: ['quantity'] },
+    }],
  });
 
  if (!orderById) throw new NotFound('not found');
-  return { statusCode: 200, data: orderById };
+ 
+  if (tokenId !== orderById.userId) {
+    throw new NotFound('not found');
+  }
+
+const { name: sellerName } = await User.findOne({ where: { id: orderById.sellerId } });
+const { name: userName } = await User.findOne({ where: { id: orderById.userId } });
+
+ const orderObj = {
+  id: orderById.id,
+  sellerName,
+  userName,
+  userId: orderById.userId,
+  totalPrice: orderById.totalPrice,
+  deliveryAddress: orderById.deliveryAddress,
+  deliveryNumber: orderById.deliveryNumber,
+  status: orderById.status,
+  date: orderById.saleDate,
+  products: orderById.products,
+ };
+
+  return { statusCode: 200, data: orderObj };
 };
 
 module.exports = {
