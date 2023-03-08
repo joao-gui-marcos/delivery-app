@@ -1,6 +1,5 @@
 const md5 = require('md5');
 const { Op } = require('sequelize');
-// const BadRequest = require('./utils/errors/BadRequest');
 const NotFound = require('./utils/errors/NotFound');
 const { User } = require('../../database/models');
 const { createToken } = require('./utils/validadeJWT');
@@ -14,8 +13,8 @@ const login = async ({ email, password }) => {
 
   if (!userInfo) throw new NotFound('Invalid fields');
 
-  const token = createToken(userInfo.dataValues);
-
+  const token = createToken(userInfo.dataValues.id, userInfo.dataValues.name, 
+    userInfo.dataValues.email, userInfo.dataValues.role);
   return { statusCode: 200, data: { ...userInfo.dataValues, token } };
 };
 
@@ -26,18 +25,16 @@ const createUser = async (newUser) => {
 
   if (verifyIfExists) throw new Conflict('User already exists');
 
-  const {
-    dataValues: { name, email, role },
-  } = await User.create({
+  const createdUser = await User.create({
     name: newUser.name,
     email: newUser.email,
     password: md5(newUser.password),
     role: 'customer',
   });
 
-  const token = createToken({ name, email, role });
+  const token = createToken(createdUser.id, createdUser.name, createdUser.email, createdUser.role);
 
-  return { statusCode: 201, data: { name, email, role, token } };
+  return { statusCode: 201, data: token };
 };
 
 const getAllSellers = async () => {
