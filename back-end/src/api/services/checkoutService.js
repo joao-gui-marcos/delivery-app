@@ -45,12 +45,12 @@ const updateOrder = async (id, status) => {
 };
 
 const getOrderByCustomer = async (id) => {
-  const orderById = await Sale.findAll({ where: { userId: id } });
-
-  if (!orderById) throw new NotFound('not found');
-
-  return { statusCode: 200, data: orderById };
-};
+    const orderById = await Sale.findAll({ where: { userId: id } });
+  
+    if (!orderById) throw new NotFound('not found');
+  
+    return { statusCode: 200, data: orderById };
+  };
 
 const getOrderBySeller = async (id) => {
   const orderBySeller = await Sale.findAll({ where: { sellerId: id } });

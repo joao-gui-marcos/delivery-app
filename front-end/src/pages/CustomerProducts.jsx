@@ -11,6 +11,7 @@ function CustomerProducts() {
   const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {
+    console.log(JSON.parse(userData).token);
     fetch('http://localhost:3001/products', {
       method: 'GET',
       headers: {
