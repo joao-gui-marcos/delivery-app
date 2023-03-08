@@ -34,7 +34,7 @@ const createUser = async (newUser) => {
 
   const token = createToken(createdUser.id, createdUser.name, createdUser.email, createdUser.role);
 
-  return { statusCode: 201, data: token };
+  return { statusCode: 201, data: { ...createdUser.dataValues, token } };
 };
 
 const getAllSellers = async () => {
