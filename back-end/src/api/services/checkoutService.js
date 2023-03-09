@@ -58,6 +58,28 @@ const getOrderBySeller = async (id) => {
 };
 
 const getOrderById = async (id, tokenId) => {
+  const orderById = await Sale.findOne({ where: { id, userId: tokenId },
+    include: [{
+      model: Product, 
+      as: 'products',
+      attributes: { exclude: ['urlImage', 'deliveryAddress', 'deliveryNumber', 'userId'] },
+      through: { attributes: ['quantity'] },
+    }],
+   attributes: { exclude: ['deliveryAddress', 'deliveryNumber'] },
+  });
+
+  if (!orderById) throw new NotFound('not found');
+
+  const { name: sellerName } = await User.findOne({ where: { id: orderById.sellerId } });
+  const { name: userName } = await User.findOne({ where: { id: orderById.userId } });
+
+  orderById.sellerId = sellerName;
+  orderById.userId = userName;
+
+  return { statusCode: 200, data: orderById };
+};
+
+const getOrderByIdSeller = async (id, tokenId) => {
   const orderById = await Sale.findByPk(id, {
     include: [{
       model: Product, 
@@ -70,7 +92,7 @@ const getOrderById = async (id, tokenId) => {
 
   if (!orderById) throw new NotFound('not found');
  
-  if (tokenId !== orderById.userId) throw new NotFound('not found');
+  if (tokenId !== orderById.sellerId) throw new NotFound('not found');
 
   const { name: sellerName } = await User.findOne({ where: { id: orderById.sellerId } });
   const { name: userName } = await User.findOne({ where: { id: orderById.userId } });
@@ -83,7 +105,7 @@ const getOrderById = async (id, tokenId) => {
 
 module.exports = {
   createOrder,
-  /* findOrderById */
+  getOrderByIdSeller,
   updateOrder,
   getOrderByCustomer,
   getOrderBySeller,
