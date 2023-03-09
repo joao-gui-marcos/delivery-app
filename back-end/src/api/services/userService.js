@@ -62,9 +62,18 @@ const createUserManagement = async ({ name, email, password, role }) => {
   return { statusCode: 201, data: { ...createdUser.dataValues, token } };
 };
 
+const deleteUser = async (id) => {
+  const deletedUser = await User.destroy({ where: { id } });
+
+  if (!deletedUser) throw new NotFound('not found');
+
+  return { statusCode: 200, data: "User deleted" };
+}
+
 module.exports = {
   login,
   createUser,
   getAllSellers,
   createUserManagement,
+  deleteUser,
 };

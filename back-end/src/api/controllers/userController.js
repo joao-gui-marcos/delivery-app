@@ -30,9 +30,19 @@ const createUserByManagement = async (req, res) => {
   return res.status(statusCode).json(data);
 };
 
+const deleteUser = async (req, res) => {
+  const { id } = req.params;
+  const { statusCode, data, message } = await UserService.deleteUser(id);
+
+  if (message) return res.status(statusCode).json(message);
+
+  return res.status(statusCode).json(data);
+}
+
 module.exports = {
   login,
   createUser,
   getAllSellers,
   createUserByManagement,
+  deleteUser,
 };
