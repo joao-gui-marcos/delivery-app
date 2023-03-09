@@ -49,16 +49,26 @@ const getOrderBySeller = async (req, res) => {
 const getOrderById = async (req, res) => {
   const { id } = req.params;
   const token = req.headers.authorization;
+  const { id: tokenId, role } = validateToken(token);
+
+  const { statusCode, data } = await checkoutService.getOrderById(id, tokenId, role);
+
+  return res.status(statusCode).json(data);
+};
+
+const getOrderByIdSeller = async (req, res) => {
+  const { id } = req.params;
+  const token = req.headers.authorization;
   const { id: tokenId } = validateToken(token);
 
-  const { statusCode, data } = await checkoutService.getOrderById(id, tokenId);
+  const { statusCode, data } = await checkoutService.getOrderByIdSeller(id, tokenId);
 
   return res.status(statusCode).json(data);
 };
 
 module.exports = {
   createOrder,
-  /* findOrderById */
+  getOrderByIdSeller,
   updateOrder,
   getOrderByCustomer,
   getOrderBySeller,

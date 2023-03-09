@@ -5,6 +5,7 @@ const { createOrder,
   getOrderByCustomer,
   getOrderBySeller,
   getOrderById,
+  getOrderByIdSeller,
 } = require('../controllers/checkoutController');
 const { verifyAutorization } = require('../middlewares/login.middlewares');
 
@@ -12,9 +13,10 @@ const checkoutRouter = express.Router();
 
 checkoutRouter.get('/seller', verifyAutorization, getOrderBySeller);
 checkoutRouter.get('/customer', verifyAutorization, getOrderByCustomer);
-checkoutRouter.post('/', createOrder);
 // checkoutRouter.get('/:id', verifyAutorization, findOrderById);
 checkoutRouter.patch('/:id', updateOrder);
-checkoutRouter.get('/order/:id', getOrderById);
+checkoutRouter.get('/order/:id/user', getOrderById);
+checkoutRouter.get('/order/:id/seller', getOrderByIdSeller);
+checkoutRouter.post('/', createOrder);
 
 module.exports = checkoutRouter;
