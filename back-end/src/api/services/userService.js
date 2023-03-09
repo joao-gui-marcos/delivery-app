@@ -43,8 +43,28 @@ const getAllSellers = async () => {
   return { statusCode: 200, data: sellers };
 };
 
+const createUserManagement = async ({ name, email, password, role }) => {
+  const verifyIfExists = await User.findOne({
+    where: { [Op.or]: [{ name }, { email }] },
+  });
+
+  if (verifyIfExists) throw new Conflict('User already exists');
+
+  const createdUser = await User.create({
+    name,
+    email,
+    password: md5(password),
+    role,
+  });
+
+  const token = createToken(createdUser.id, createdUser.name, createdUser.email, createdUser.role);
+
+  return { statusCode: 201, data: { ...createdUser.dataValues, token } };
+};
+
 module.exports = {
   login,
   createUser,
   getAllSellers,
+  createUserManagement,
 };

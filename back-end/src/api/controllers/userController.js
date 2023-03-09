@@ -22,8 +22,17 @@ const getAllSellers = async (_req, res) => {
   return res.status(statusCode).json(data);
 };
 
+const createUserByManagement = async (req, res) => {
+  const { statusCode, data, message } = await UserService.createUserManagement(req.body);
+
+  if (message) return res.status(statusCode).json(message);
+
+  return res.status(statusCode).json(data);
+};
+
 module.exports = {
   login,
   createUser,
   getAllSellers,
+  createUserByManagement,
 };
