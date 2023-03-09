@@ -11,7 +11,7 @@ function CustomerOrderDetail() {
 
   useEffect(() => {
     const fetchOrders = () => {
-      fetch(`http://localhost:3001/checkout/order/${id}`, {
+      fetch(`http://localhost:3001/checkout/order/${id}/user`, {
         method: 'GET',
         headers: {
           Authorization: JSON.parse(userData).token,
@@ -33,8 +33,7 @@ function CustomerOrderDetail() {
       <CustomerNavBar name={ JSON.parse(userData).name } />
       <CustomerOrderDetailsHeader
         orderId={ order.id }
-        // seller={ order.sellerId }
-        seller="Fulana Pereira"
+        seller={ order.sellerId }
         saleDate={ order.saleDate }
         status={ order.status }
       />

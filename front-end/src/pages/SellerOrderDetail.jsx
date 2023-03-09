@@ -11,7 +11,7 @@ function SellerOrderDetail() {
 
   useEffect(() => {
     const fetchOrders = () => {
-      fetch(`http://localhost:3001/checkout/order/${id}`, {
+      fetch(`http://localhost:3001/checkout/order/${id}/seller`, {
         method: 'GET',
         headers: {
           Authorization: JSON.parse(userData).token,
