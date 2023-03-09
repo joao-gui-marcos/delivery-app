@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import Provider from './contexts/AppProvider';
+import Admin from './pages/Admin';
 import CustomerCheckout from './pages/CustomerCheckout';
 import CustomerOrderDetail from './pages/CustomerOrderDetail';
 import CustomerOrders from './pages/CustomerOrders';
@@ -26,6 +27,7 @@ function App() {
           <Route exact path="/customer/orders/:id" component={ CustomerOrderDetail } />
           <Route exact path="/seller/orders" component={ SellerOrders } />
           <Route exact path="/seller/orders/:id" component={ SellerOrderDetail } />
+          <Route exact path="/admin/manage" component={ Admin } />
         </Switch>
       </Router>
     </Provider>

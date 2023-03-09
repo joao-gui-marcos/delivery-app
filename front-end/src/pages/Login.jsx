@@ -41,7 +41,7 @@ function Login() {
             if (data.role === 'customer') {
               history.push('/customer/products');
             } else if (data.role === 'administrator') {
-              history.push('/admin/dashboard');
+              history.push('/admin/manage');
             } else if (data.role === 'seller') {
               history.push('/seller/orders');
             } else {
@@ -64,7 +64,7 @@ function Login() {
       if (userData.role === 'customer') {
         history.push('/customer/products');
       } else if (userData.role === 'administrator') {
-        history.push('/admin/dashboard');
+        history.push('/admin/manage');
       } else if (userData.role === 'seller') {
         history.push('/seller/orders');
       } else {
