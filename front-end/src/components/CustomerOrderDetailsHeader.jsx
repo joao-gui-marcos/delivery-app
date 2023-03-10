@@ -2,10 +2,34 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function CustomerOrderDetailsHeader({ orderId, seller, saleDate, status }) {
+  const userData = localStorage.getItem('user');
   const ROUTE = 'customer_order_details';
   const ELEMENT = 'element-order-details-label-delivery-status';
-  const handleStatusChange = () => {
-    // onStatusChange('delivered');
+  const STATUS_NOT_FOUND = 400;
+  const STATUS_OK = 201;
+  const SALE_DELIVERED = 'Entregue';
+
+  const handleStatusChange = (newStatus) => {
+    fetch(`http://localhost:3001/checkout/${orderId}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: JSON.parse(userData).token,
+      },
+      body: JSON.stringify({ status: newStatus }),
+    })
+      .then((response) => {
+        if (response.status === STATUS_OK) {
+          response.json().then((data) => {
+            console.log(data);
+          });
+        } else if (response.status === STATUS_NOT_FOUND) {
+          console.log('Error updating sale status');
+        }
+      })
+      .catch((error) => {
+        console.error('Error updating sale status', error);
+      });
   };
 
   const formatDate = (dateString) => {
@@ -15,6 +39,8 @@ function CustomerOrderDetailsHeader({ orderId, seller, saleDate, status }) {
     const year = date.getUTCFullYear();
     return `${day}/${month}/${year}`;
   };
+
+  const isDeliveredButtonDisabled = status !== 'Em Trânsito';
 
   return (
     <div>
@@ -33,18 +59,16 @@ function CustomerOrderDetailsHeader({ orderId, seller, saleDate, status }) {
         {' '}
         {formatDate(saleDate)}
       </div>
-      <div
-        data-testid={ `${ROUTE}__${ELEMENT}` }
-      >
+      <div>
         Order status:
         {' '}
-        {status}
+        <span data-testid={ `${ROUTE}__${ELEMENT}` }>{status}</span>
       </div>
       <button
         data-testid="customer_order_details__button-delivery-check"
         type="button"
-        disabled
-        onClick={ handleStatusChange }
+        disabled={ isDeliveredButtonDisabled }
+        onClick={ () => handleStatusChange(SALE_DELIVERED) }
       >
         Mark as delivered
 

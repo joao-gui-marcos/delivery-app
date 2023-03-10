@@ -11,7 +11,7 @@ function AdminForm() {
   const NAME_LENGTH = 12;
   const URL = 'http://localhost:3001/user/manager/newuser';
   const STATUS_NOT_FOUND = 409;
-  const STATUS_OK = 200;
+  const STATUS_OK = 201;
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);

@@ -22,7 +22,7 @@ function SellerOrderDetail() {
         .catch((error) => console.error('Error fetching orders', error));
     };
     fetchOrders();
-  }, [userData]);
+  }, [order]);
 
   if (!order) {
     return <div>Loading...</div>;
