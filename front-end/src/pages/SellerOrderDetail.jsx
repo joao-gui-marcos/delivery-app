@@ -11,7 +11,7 @@ function SellerOrderDetail() {
 
   useEffect(() => {
     const fetchOrders = () => {
-      fetch(`http://localhost:3001/checkout/order/${id}`, {
+      fetch(`http://localhost:3001/checkout/order/${id}/seller`, {
         method: 'GET',
         headers: {
           Authorization: JSON.parse(userData).token,
@@ -22,7 +22,7 @@ function SellerOrderDetail() {
         .catch((error) => console.error('Error fetching orders', error));
     };
     fetchOrders();
-  }, [userData]);
+  }, [order]);
 
   if (!order) {
     return <div>Loading...</div>;
