@@ -10,7 +10,7 @@ function AdminForm() {
   const PASSWORD_LENGTH = 6;
   const NAME_LENGTH = 12;
   const URL = 'http://localhost:3001/user/manager/newuser';
-  const STATUS_NOT_FOUND = 404;
+  const STATUS_NOT_FOUND = 409;
   const STATUS_OK = 200;
 
   const handleEmailChange = (event) => {
@@ -123,8 +123,8 @@ function AdminForm() {
       </button>
       {
         registerError && (
-          <p>
-            Invalid fields
+          <p data-testid="admin_manage__element-invalid-register">
+            Conflict: User already exists
           </p>)
       }
     </div>
