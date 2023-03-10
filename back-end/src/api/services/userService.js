@@ -43,6 +43,12 @@ const getAllSellers = async () => {
   return { statusCode: 200, data: sellers };
 };
 
+const getAllUsers = async () => {
+  const allUsers = await User.findAll({ where: { role: { [Op.not]: 'administrator' } } });
+
+  return { statusCode: 200, data: allUsers };
+};
+
 const createUserManagement = async ({ name, email, password, role }) => {
   const verifyIfExists = await User.findOne({
     where: { [Op.or]: [{ name }, { email }] },
@@ -74,6 +80,7 @@ module.exports = {
   login,
   createUser,
   getAllSellers,
+  getAllUsers,
   createUserManagement,
   deleteUser,
 };

@@ -23,6 +23,12 @@ const getAllSellers = async (_req, res) => {
   return res.status(statusCode).json(data);
 };
 
+const getAllUsers = async (_req, res) => {
+  const { statusCode, data } = await UserService.getAllUsers();
+
+  return res.status(statusCode).json(data);
+};
+
 const createUserByManagement = async (req, res) => {
   const token = req.headers.authorization;
 
@@ -60,6 +66,7 @@ module.exports = {
   login,
   createUser,
   getAllSellers,
+  getAllUsers,
   createUserByManagement,
   deleteUser,
 };
