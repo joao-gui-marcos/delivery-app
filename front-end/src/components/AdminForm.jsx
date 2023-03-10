@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
 
 function AdminForm() {
-  const history = useHistory();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
-  const [role, setRole] = useState('Seller');
+  const [role, setRole] = useState('seller');
   const [registerError, setregisterError] = useState(false);
+  const userData = localStorage.getItem('user');
   const PASSWORD_LENGTH = 6;
   const NAME_LENGTH = 12;
-  const URL = 'http://localhost:3001/login';
+  const URL = 'http://localhost:3001/user/manager/newuser';
   const STATUS_NOT_FOUND = 404;
   const STATUS_OK = 200;
 
@@ -35,27 +34,14 @@ function AdminForm() {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        Authorization: JSON.parse(userData).token,
       },
-      body: JSON.stringify({ email, password }),
+      body: JSON.stringify({ email, password, name, role }),
     })
       .then((response) => {
         if (response.status === STATUS_OK) {
           response.json().then((data) => {
-            localStorage.setItem('user', JSON.stringify({
-              name: data.name,
-              email: data.email,
-              role: data.role,
-              token: data.token,
-            }));
-            if (data.role === 'customer') {
-              history.push('/customer/products');
-            } else if (data.role === 'administrator') {
-              history.push('/admin/manage');
-            } else if (data.role === 'seller') {
-              history.push('/seller/orders');
-            } else {
-              console.error('Invalid role:', data.role);
-            }
+            console.log(data);
           });
         } else if (response.status === STATUS_NOT_FOUND) {
           setregisterError(true);
@@ -122,9 +108,9 @@ function AdminForm() {
           value={ role }
           onChange={ handleRoleChange }
         >
-          <option value="Seller">Seller</option>
-          <option value="Customer">Customer</option>
-          <option value="Administrator">Administrator</option>
+          <option value="seller">seller</option>
+          <option value="customer">customer</option>
+          <option value="administrator">administrator</option>
         </select>
       </label>
       <button
