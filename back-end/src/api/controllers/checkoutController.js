@@ -9,14 +9,6 @@ const createOrder = async (req, res) => {
   return res.status(statusCode).json(data);
 };
 
-// const findOrderById = async (req, res) => {
-//   const { id } = req.params;
-
-//   const { statusCode, data } = await checkoutService.findOrderById(id);
-
-//   return res.status(statusCode).json(data);
-// };
-
 const updateOrder = async (req, res) => {
   const { id } = req.params;
   const { status } = req.body;
