@@ -4,18 +4,18 @@
 }
 
 .product-card {
-  border: 1px solid #ccc;
-  display: flex;
   align-items: center;
-  flex-direction: column;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* add box-shadow */
+  border: 1px solid #ccc;
   border-radius: 8px;
-  padding: 20px;
-  width: 300px;
-  margin-right: 20px;
+  border-top: 4px solid green;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* add box-shadow */
+  display: flex;
+  flex-direction: column;
   margin-bottom: 20px;
   margin-left: 70px;
-  border-top: 4px solid green;
+  margin-right: 20px;
+  padding: 20px;
+  width: 300px;
 }
 
 .product-card:last-child {
@@ -40,51 +40,54 @@
 }
 
 .product-card button {
-  background-color: #fff;
+  background-color: green;
   border: 1px solid #ccc;
+  border-radius: 8px;
   color: #333;
   cursor: pointer;
   font-size: 16px;
   padding: 5px 10px;
-  background-color: green;
-  border-radius: 8px;
 }
 
 .product-card input {
   border: 1px solid #ccc;
+  border-radius: 8px;
   font-size: 16px;
   padding: 5px 10px;
   text-align: center;
   width: 50px;
-  border-radius: 8px;
+}
+
+.product-card input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+  appearance: none;
+  margin: 0;
 }
 
 .products-page-button {
-  position: fixed;
-  bottom: 50px;
-  right: 50px;
-  cursor: pointer;
   background-color: green;
-  color: white;
   border: none;
   border-radius: 8px;
-  padding: 10px 20px;
+  bottom: 50px;
+  color: white;
+  cursor: pointer;
   font-size: 18px;
+  padding: 10px 20px;
+  position: fixed;
+  right: 50px;
 }
 
 .card-bottom {
-  margin-top: auto;
   background-color: rgba(0, 128, 0, 0.2); /* slightly green background */
+  border-radius: 8px; /* rounded corners on bottom only */
   color: white; /* all fonts white */
+  margin-top: auto;
   padding: 10px; /* some padding */
-  padding-right: 50px;
   padding-left: 50px;
-  border-radius: 8px 8px 8px 8px; /* rounded corners on bottom only */
-  
+  padding-right: 50px;
 }
 
 .card-bottom button {
-  font-size: 18px;
-  font-weight: bold;
   color: white;
+  font-size: 18px;
+  font-weight: 700;
 }

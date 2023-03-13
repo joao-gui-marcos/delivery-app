@@ -59,7 +59,7 @@ function CustomerProducts() {
         onClick={ handleClick }
         disabled={ totalPrice <= '0,00' }
       >
-        Total: R$
+        Cart: R$
         <span
           data-testid="customer_products__checkout-bottom-value"
         >
