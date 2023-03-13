@@ -12,7 +12,7 @@ function CustomerCheckoutTable({ onRemoveItem }) {
   };
 
   return (
-    <table>
+    <table className="customer-checkout-table">
       <thead>
         <tr>
           <th>Item</th>

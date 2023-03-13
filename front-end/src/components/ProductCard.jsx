@@ -24,7 +24,7 @@ function ProductCard({ name, price, image, id, onUpdateCart }) {
   };
 
   return (
-    <div>
+    <div className="product-card">
       <h2 data-testid={ `customer_products__element-card-title-${id}` }>{name}</h2>
       <p>
         Price: $
@@ -40,7 +40,7 @@ function ProductCard({ name, price, image, id, onUpdateCart }) {
         alt={ name }
         height="100px"
       />
-      <div>
+      <div className="card-bottom">
         <button
           data-testid={ `customer_products__button-card-rm-item-${id}` }
           type="button"

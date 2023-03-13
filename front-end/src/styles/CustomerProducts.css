@@ -1,0 +1,90 @@
+.product-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.product-card {
+  border: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* add box-shadow */
+  border-radius: 8px;
+  padding: 20px;
+  width: 300px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  margin-left: 70px;
+  border-top: 4px solid green;
+}
+
+.product-card:last-child {
+  margin-right: 0;
+}
+
+.product-card h2 {
+  font-size: 24px;
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+.product-card p {
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+.product-card img {
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 10px;
+}
+
+.product-card button {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  color: #333;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 5px 10px;
+  background-color: green;
+  border-radius: 8px;
+}
+
+.product-card input {
+  border: 1px solid #ccc;
+  font-size: 16px;
+  padding: 5px 10px;
+  text-align: center;
+  width: 50px;
+  border-radius: 8px;
+}
+
+.products-page-button {
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  cursor: pointer;
+  background-color: green;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 18px;
+}
+
+.card-bottom {
+  margin-top: auto;
+  background-color: rgba(0, 128, 0, 0.2); /* slightly green background */
+  color: white; /* all fonts white */
+  padding: 10px; /* some padding */
+  padding-right: 50px;
+  padding-left: 50px;
+  border-radius: 8px 8px 8px 8px; /* rounded corners on bottom only */
+  
+}
+
+.card-bottom button {
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+}

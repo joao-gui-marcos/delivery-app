@@ -34,7 +34,7 @@ function CustomerInfoForm() {
   }, []);
 
   return (
-    <div>
+    <div className="customer-info">
       <label htmlFor="seller">
         Select Seller:
         <select

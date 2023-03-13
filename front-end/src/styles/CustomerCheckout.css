@@ -1,0 +1,133 @@
+.customer-checkout-table {
+  border-collapse: collapse;
+  width: 80%;
+  margin: auto;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  background-color: #EAF1EF;
+}
+
+.customer-checkout-table th {
+  text-align: center;
+  padding: 10px;
+}
+
+.customer-checkout-table td {
+  text-align: center;
+  padding: 10px;
+}
+
+.customer-checkout-table td:nth-child(1) {
+  background-color: #2FC18C;
+  border-radius: 5px;
+}
+
+.customer-checkout-table td:nth-child(2) {
+  border-radius: 8px;
+}
+
+.customer-checkout-table td:nth-child(3) {
+  background-color:  #036B52;
+  color: white;
+}
+
+.customer-checkout-table td:nth-child(4) {
+  background-color:  #421981;
+  color: white;
+}
+
+.customer-checkout-table td:nth-child(5) {
+  background-color: #056CF9;
+  color: white;
+}
+
+.customer-checkout-table button {
+  background-color:  #2FC18C;
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 8px;
+}
+
+.customer-checkout-table button:hover {
+  background-color: red;
+}
+
+.customer-checkout-table td:last-child {
+  padding-right: 0;
+}
+
+.checkout-page-total-button {
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  cursor: pointer;
+  background-color: green;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.button-container {
+  text-align: center;
+}
+
+
+.total-cart {
+  position: fixed;
+  bottom: 95px;
+  right: 50px;
+  background-color: green;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 18px;
+}
+
+.customer-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-collapse: collapse;
+  width: 50%;
+  margin: auto;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  background-color: #FBFFFE;
+}
+
+.customer-info label {
+  margin-bottom: 10px;
+}
+
+.customer-info input,
+.customer-info select {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  font-size: 16px;
+  margin-left: 10px;
+}
+
+.customer-info select {
+  max-width: 200px;
+}
+
+.customer-info input:focus,
+.customer-info select:focus {
+  outline: none;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+}
+
+.customer-info label[for="seller"] {
+  margin-right: 10px;
+}
+
+
+
