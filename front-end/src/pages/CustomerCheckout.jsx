@@ -54,15 +54,15 @@ function CustomerCheckout() {
       <br />
       <br />
       <CustomerInfo />
-      <span
-        className="total-cart"
-        data-testid="customer_checkout__element-order-total-price"
-      >
-        Total: R$
-        {' '}
-        {totalCartPrice}
-      </span>
       <div className="button-container">
+        <span
+          className="total-cart"
+          data-testid="customer_checkout__element-order-total-price"
+        >
+          Total: R$
+          {' '}
+          {totalCartPrice}
+        </span>
         <button
           className="checkout-page-total-button"
           data-testid="customer_checkout__button-submit-order"
