@@ -1,0 +1,81 @@
+.register-form {
+  align-items: center;
+  background: #eaf1ef;
+  border: 1px solid #b1c2be;
+  display: flex;
+  height: 400px;
+  left: 722px;
+  position: absolute;
+  top: 344px;
+  width: 425px;
+}
+
+.register-form .name-input-label {
+  margin-bottom: 370px;
+  margin-left: 20px;
+}
+
+.register-form .name-input {
+  height: 50px;
+  left: 20px;
+  position: absolute;
+  top: 30px;
+  width: 371px;
+}
+
+.register-form .email-input-label {
+  margin-bottom: 194px;
+  margin-left: -45px;
+}
+
+.register-form .email-input {
+  height: 50px;
+  left: 20px;
+  position: absolute;
+  top: 120px;
+  width: 371px;
+}
+
+.register-form .password-input-label {
+  margin-bottom: 10px;
+  margin-left: -45px;
+}
+
+.register-form .password-input {
+  height: 50px;
+  left: 20px;
+  position: absolute;
+  top: 210px;
+  width: 371px;
+}
+
+.register-form .register-button {
+  background: #036b52;
+  border-radius: 10px;
+  color: #f2fffc;
+  height: 59px;
+  left: 25px;
+  position: absolute;
+  top: 300px;
+  width: 371px;
+}
+
+.register-form .register-button:disabled {
+  background: grey;
+  border-radius: 10px;
+  color: #f2fffc;
+  height: 59px;
+  left: 25px;
+  position: absolute;
+  top: 300px;
+  width: 371px;
+}
+
+.register-form .invalid-credentials {
+  height: 59px;
+  left: 140px;
+  position: absolute;
+  top: 420px;
+  width: 370px;
+}
+

@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import '../styles/Login.css';
 
 function Login() {
   const history = useHistory();
@@ -95,30 +96,35 @@ function Login() {
   const isLoginDisabled = !isEmailValid(email) || !isPasswordValid(password);
 
   return (
-    <div>
-      <label htmlFor="email-input">
+    <div className="login-page">
+      <label className="email-input-label" htmlFor="email-input">
         Login:
         <input
+          className="email-input"
           data-testid="common_login__input-email"
           id="email-input"
           type="email"
+          placeholder="  email@email.com"
           value={ email }
           onChange={ handleEmailChange }
         />
       </label>
       <br />
-      <label htmlFor="password-input">
+      <label className="password-input-label" htmlFor="password-input">
         Password:
         <input
+          className="password-input"
           data-testid="common_login__input-password"
           id="password-input"
           type="password"
+          placeholder="  **********"
           value={ password }
           onChange={ handlePasswordChange }
         />
       </label>
       <br />
       <button
+        className="login-button"
         data-testid="common_login__button-login"
         onClick={ handleLogin }
         type="button"
@@ -127,6 +133,7 @@ function Login() {
         LOGIN
       </button>
       <button
+        className="signup-button"
         data-testid="common_login__button-register"
         onClick={ handleSignup }
         type="button"
@@ -137,6 +144,7 @@ function Login() {
         loginError && (
           <p
             data-testid="common_login__element-invalid-email"
+            className="invalid-credentials"
           >
             Invalid credentials
           </p>)

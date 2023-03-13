@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import '../styles/Register.css';
 
 function Register() {
   const history = useHistory();
@@ -83,10 +84,11 @@ function Register() {
   || !isPasswordValid(password) || !isNameValid(name);
 
   return (
-    <div>
-      <label htmlFor="name-input">
+    <div className="register-form">
+      <label className="name-input-label" htmlFor="name-input">
         Name:
         <input
+          className="name-input"
           data-testid="common_register__input-name"
           id="name-input"
           type="name"
@@ -95,9 +97,10 @@ function Register() {
         />
       </label>
       <br />
-      <label htmlFor="email-input">
+      <label className="email-input-label" htmlFor="email-input">
         Email:
         <input
+          className="email-input"
           data-testid="common_register__input-email"
           id="email-input"
           type="email"
@@ -106,9 +109,10 @@ function Register() {
         />
       </label>
       <br />
-      <label htmlFor="password-input">
+      <label className="password-input-label" htmlFor="password-input">
         Password:
         <input
+          className="password-input"
           data-testid="common_register__input-password"
           id="password-input"
           type="password"
@@ -118,6 +122,7 @@ function Register() {
       </label>
       <br />
       <button
+        className="register-button"
         data-testid="common_register__button-register"
         onClick={ handleRegister }
         type="button"
@@ -129,6 +134,7 @@ function Register() {
         registerError && (
           <p
             data-testid="common_register__element-invalid_register"
+            className="invalid-credentials"
           >
             User already exists
           </p>)
