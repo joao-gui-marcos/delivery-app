@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import AdminForm from '../components/AdminForm';
 import AdmUsersTable from '../components/AdmUsersTable';
 import CustomerNavBar from '../components/CustomerNavBar';
+import '../styles/Admin.css';
 
 function Admin() {
   const userData = localStorage.getItem('user');

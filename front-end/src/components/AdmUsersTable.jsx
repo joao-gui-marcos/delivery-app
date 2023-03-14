@@ -23,7 +23,7 @@ function AdmUsersTable({ users }) {
   };
 
   return (
-    <table>
+    <table className="admin-table">
       <thead>
         <tr>
           <th>Number</th>
