@@ -11,14 +11,16 @@
 
 .admin-table {
   background-color: #eaf1ef;
-  border-collapse: collapse;
+  border-collapse: separate;
   border-radius: 8px;
+  border-spacing: 5px;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
   margin: auto;
   width: 80%;
 }
 
 .admin-table th {
+  margin-left: 5px;
   padding: 10px;
   text-align: center;
 }
@@ -39,11 +41,14 @@
 
 .admin-table td:nth-child( 3 ) {
   background-color: #036b52;
+  border-radius: 8px;
   color: white;
+  width: 167px;
 }
 
 .admin-table td:nth-child( 4 ) {
   background-color: #421981;
+  border-radius: 8px;
   color: white;
 }
 

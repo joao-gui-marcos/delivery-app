@@ -10,15 +10,29 @@ function OrderCard(props) {
     history.push(`/customer/orders/${orderId}`);
   };
 
+  const getOrderCardClass = (classStatus) => {
+    if (classStatus === 'Pendente') {
+      return 'order-card pending';
+    } if (classStatus === 'Preparando') {
+      return 'order-card processing';
+    } if (classStatus === 'Em Trânsito') {
+      return 'order-card dispatch';
+    }
+    return 'order-card completed';
+  };
+
   return (
-    <button type="button" onClick={ handleClick }>
-      <h2>Order Details</h2>
-      <p data-testid={ `customer_orders__element-order-id-${orderId}` }>
+    <button className="order-card" type="button" onClick={ handleClick }>
+      <h2 data-testid={ `customer_orders__element-order-id-${orderId}` }>
         Order ID:
         {' '}
         {orderId}
-      </p>
-      <p data-testid={ `customer_orders__element-delivery-status-${orderId}` }>
+      </h2>
+      <h3>Details:</h3>
+      <p
+        className={ getOrderCardClass(status) }
+        data-testid={ `customer_orders__element-delivery-status-${orderId}` }
+      >
         Status:
         {' '}
         {status}
@@ -29,7 +43,7 @@ function OrderCard(props) {
         {saleDate}
       </p>
       <p data-testid={ `customer_orders__element-card-price-${orderId}` }>
-        Total Price:
+        Total Price: R$
         {' '}
         <span>
           {Number(totalPrice)

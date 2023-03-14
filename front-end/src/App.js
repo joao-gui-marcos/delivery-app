@@ -10,6 +10,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import SellerOrderDetail from './pages/SellerOrderDetail';
 import SellerOrders from './pages/SellerOrders';
+import './App.css';
 
 function App() {
   return (
