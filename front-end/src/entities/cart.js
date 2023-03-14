@@ -13,10 +13,14 @@ const Cart = {
     const items = this.getItems();
     const index = items.findIndex((i) => i.id === item.id);
     if (index !== NO_NEGATIVE_VALUES) {
-      // item already exists in cart, update quantity
+    // item already exists in cart, update quantity
       items[index].quantity = item.quantity;
-    } else {
-      // item does not exist in cart, add it.
+      if (item.quantity === 0) {
+        // remove item from cart if quantity is zero
+        items.splice(index, 1);
+      }
+    } else if (item.quantity > 0) {
+    // item does not exist in cart, add it if quantity is greater than zero
       items.push(item);
     }
     this.setItems(items);
