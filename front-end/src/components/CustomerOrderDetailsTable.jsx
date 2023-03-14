@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import '../styles/customerOrderDetailsTable.css';
 
 function CustomerOrderDetailsTable({ items }) {
   return (
-    <table>
+    <table className="customer-orderDetails-table">
       <thead>
         <tr>
           <th>Item</th>
@@ -15,7 +16,9 @@ function CustomerOrderDetailsTable({ items }) {
       </thead>
       <tbody>
         {items.map((item, ind) => (
-          <tr key={ item.id }>
+          <tr
+            key={ item.id }
+          >
             <td
               data-testid={ `customer_order_details__element-order-table-item-number-
               ${ind}` }

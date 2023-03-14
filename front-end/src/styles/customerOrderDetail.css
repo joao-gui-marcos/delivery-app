@@ -1,0 +1,10 @@
+.customer-order-details .total-cart {
+  background-color: #036b52;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 18px;
+  padding: 10px 20px;
+  position: absolute;
+  right: 50px;
+}
