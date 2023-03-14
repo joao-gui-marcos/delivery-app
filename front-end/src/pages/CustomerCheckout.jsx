@@ -38,6 +38,7 @@ function CustomerCheckout() {
       if (!response.ok) {
         throw new Error('Error submitting order');
       }
+      Cart.clear();
       const id = Number(await response.json());
       history.push(`/customer/orders/${id}`);
     } catch (error) {

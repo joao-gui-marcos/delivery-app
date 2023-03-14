@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+// import '../../styles/customerOrderDetailsHeader.css';
 
 function SellerOrderDetailsHeader({ orderId, saleDate, status }) {
   const userData = localStorage.getItem('user');
@@ -46,7 +47,7 @@ function SellerOrderDetailsHeader({ orderId, saleDate, status }) {
   };
 
   return (
-    <div>
+    <div className="customer-order-details-header">
       <div data-testid="seller_order_details__element-order-details-label-order-id">
         Order id:
         {' '}

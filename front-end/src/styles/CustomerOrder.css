@@ -1,0 +1,78 @@
+/* Style the customer orders container */
+.customer-orders {
+  margin: 0 auto;
+  margin-left: 2%;
+  padding: 20px;
+}
+
+/* Style the order cards */
+.order-card {
+  background-color: rgb(233, 240, 240);
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  margin-bottom: 20px;
+  margin-left: 20px;
+  padding: 20px;
+  transition: all 0.3s ease;
+}
+
+.order-card div {
+  display: flex;
+}
+
+.order-card:hover {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16) , 0 3px 6px rgba(0, 0, 0, 0.23);
+  transform: translateY(-4px);
+}
+
+.order-card h2 {
+  margin-top: 0;
+}
+
+.order-card p {
+  margin-bottom: 10px;
+}
+
+.order-card .order-details {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.order-card .order-details .status {
+  font-weight: 700;
+}
+
+.order-card .order-details .date {
+  font-style: italic;
+}
+
+.order-card .order-details .total-price {
+  font-size: 1.2em;
+  font-weight: 700;
+}
+
+.order-card.pending {
+  background-color: #f7dc6f; /* yellow */
+  font-size: 15px;
+}
+
+.order-card.processing {
+  background-color: #f0b27a; /* orange */
+  font-size: 13.5px;
+}
+
+.order-card.completed {
+  background-color: #82e0aa; /* green */
+  font-size: 15.4px;
+}
+
+.order-card.dispatch {
+  background-color: limegreen; /* green */
+}
+
+.order-card span {
+  color: green;
+  font-weight: 700;
+}

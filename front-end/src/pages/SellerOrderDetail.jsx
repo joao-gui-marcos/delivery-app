@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import CustomerNavBar from '../components/CustomerNavBar';
 import SellerOrderDetailsHeader from '../components/seller/SellerOrderDetailsHeader';
 import SellerOrderDetailsTable from '../components/seller/SellerOrderDetailsTable';
+import '../styles/customerOrderDetail.css';
 
 function SellerOrderDetail() {
   const { id } = useParams();
@@ -29,7 +30,7 @@ function SellerOrderDetail() {
   }
 
   return (
-    <div>
+    <div className="customer-order-details">
       <CustomerNavBar name={ JSON.parse(userData).name } />
       <SellerOrderDetailsHeader
         orderId={ order.id }
@@ -38,6 +39,7 @@ function SellerOrderDetail() {
       />
       <SellerOrderDetailsTable items={ order.products } />
       <p
+        className="total-cart"
         type="button"
         data-testid="seller_order_details__element-order-total-price"
       >

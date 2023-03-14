@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 function SellerOrderDetailsTable({ items }) {
   return (
-    <table>
+    <table className="customer-orderDetails-table">
       <thead>
         <tr>
           <th>Item</th>

@@ -5,6 +5,7 @@
 
 .product-card {
   align-items: center;
+  background-color: rgb(233, 240, 240);
   border: 1px solid #ccc;
   border-radius: 8px;
   border-top: 4px solid green;
