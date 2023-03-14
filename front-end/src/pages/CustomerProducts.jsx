@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import CustomerNavBar from '../components/CustomerNavBar';
 import ProductCard from '../components/ProductCard';
 import Cart from '../entities/cart';
+import '../styles/CustomerProducts.css';
 
 function CustomerProducts() {
   const history = useHistory();
@@ -37,25 +38,28 @@ function CustomerProducts() {
   };
 
   return (
-    <div>
+    <div className="products-page">
       <CustomerNavBar name={ JSON.parse(userData).name } />
-      {products.map((product) => (
-        <ProductCard
-          key={ product.id }
-          name={ product.name }
-          price={ product.price }
-          image={ product.urlImage }
-          id={ product.id }
-          onUpdateCart={ (item) => updateCartItem(item) }
-        />
-      ))}
+      <div className="product-container">
+        {products.map((product) => (
+          <ProductCard
+            key={ product.id }
+            name={ product.name }
+            price={ product.price }
+            image={ product.urlImage }
+            id={ product.id }
+            onUpdateCart={ (item) => updateCartItem(item) }
+          />
+        ))}
+      </div>
       <button
+        className="products-page-button"
         data-testid="customer_products__button-cart"
         type="button"
         onClick={ handleClick }
         disabled={ totalPrice <= '0,00' }
       >
-        Total: R$
+        Cart: R$
         <span
           data-testid="customer_products__checkout-bottom-value"
         >

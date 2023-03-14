@@ -5,6 +5,7 @@ import CustomerInfo from '../components/CustomerInfo';
 import CustomerNavBar from '../components/CustomerNavBar';
 import Cart from '../entities/cart';
 import useSale from '../hooks/useSale';
+import '../styles/CustomerCheckout.css';
 
 function CustomerCheckout() {
   const history = useHistory();
@@ -50,21 +51,27 @@ function CustomerCheckout() {
       <CustomerCheckoutTable
         onRemoveItem={ () => setTotalCartPrice(Cart.getTotalBRLFormated()) }
       />
+      <br />
+      <br />
       <CustomerInfo />
-      <span
-        data-testid="customer_checkout__element-order-total-price"
-      >
-        Total: R$
-        {' '}
-        {totalCartPrice}
-      </span>
-      <button
-        data-testid="customer_checkout__button-submit-order"
-        type="button"
-        onClick={ handleClick }
-      >
-        Submit Order
-      </button>
+      <div className="button-container">
+        <span
+          className="total-cart"
+          data-testid="customer_checkout__element-order-total-price"
+        >
+          Total: R$
+          {' '}
+          {totalCartPrice}
+        </span>
+        <button
+          className="checkout-page-total-button"
+          data-testid="customer_checkout__button-submit-order"
+          type="button"
+          onClick={ handleClick }
+        >
+          Submit Order
+        </button>
+      </div>
     </div>
   );
 }
