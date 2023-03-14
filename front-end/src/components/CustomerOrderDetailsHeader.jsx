@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import '../styles/customerOrderDetailsHeader.css';
 
 function CustomerOrderDetailsHeader({ orderId, seller, saleDate, status }) {
   const userData = localStorage.getItem('user');
@@ -43,8 +44,11 @@ function CustomerOrderDetailsHeader({ orderId, seller, saleDate, status }) {
   const isDeliveredButtonDisabled = status !== 'Em Trânsito';
 
   return (
-    <div>
-      <div data-testid="customer_order_details__element-order-details-label-order-id">
+    <div className="customer-order-details-header">
+      <div
+        className="id"
+        data-testid="customer_order_details__element-order-details-label-order-id"
+      >
         Order id:
         {' '}
         {orderId}
@@ -54,15 +58,18 @@ function CustomerOrderDetailsHeader({ orderId, seller, saleDate, status }) {
         {' '}
         {seller}
       </div>
-      <div data-testid="customer_order_details__element-order-details-label-order-date">
+      <div
+        className="date"
+        data-testid="customer_order_details__element-order-details-label-order-date"
+      >
         Order date:
         {' '}
         {formatDate(saleDate)}
       </div>
-      <div>
+      <div className="status">
         Order status:
         {' '}
-        <span data-testid={ `${ROUTE}__${ELEMENT}` }>{status}</span>
+        <span className="span" data-testid={ `${ROUTE}__${ELEMENT}` }>{status}</span>
       </div>
       <button
         data-testid="customer_order_details__button-delivery-check"

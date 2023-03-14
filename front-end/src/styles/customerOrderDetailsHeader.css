@@ -1,0 +1,52 @@
+.customer-order-details-header {
+  align-items: center;
+  background-color: #eaf1ef;
+  border-radius: 8px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+  margin-bottom: 10px;
+  padding: 10px;
+  width: 78.8%;
+}
+
+.customer-order-details-header .id {
+  font-weight: 700;
+}
+
+.customer-order-details-header .date {
+  font-weight: 700;
+}
+
+.customer-order-details-header .status {
+  background-color: #00cc9b;
+  border-radius: 5px;
+  display: inline-grid;
+  font-weight: 700;
+  justify-content: center;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.customer-order-details-header .span {
+  display: flex;
+  justify-content: center;
+}
+
+.customer-order-details-header button:enabled {
+  background-color: #036b52;
+  border-radius: 5px;
+  color: white;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.customer-order-details-header button:disabled {
+  background-color: #036b52;
+  border-radius: 5px;
+  color: white;
+  font-size: 24px;
+  font-weight: 500;
+  opacity: 10%;
+}
