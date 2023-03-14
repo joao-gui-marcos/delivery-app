@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import logo from '../images/logo-nobg.png';
 import '../styles/Register.css';
 
 function Register() {
@@ -84,61 +85,64 @@ function Register() {
   || !isPasswordValid(password) || !isNameValid(name);
 
   return (
-    <div className="register-form">
-      <label className="name-input-label" htmlFor="name-input">
-        Name:
-        <input
-          className="name-input"
-          data-testid="common_register__input-name"
-          id="name-input"
-          type="name"
-          value={ name }
-          onChange={ handleNameChange }
-        />
-      </label>
-      <br />
-      <label className="email-input-label" htmlFor="email-input">
-        Email:
-        <input
-          className="email-input"
-          data-testid="common_register__input-email"
-          id="email-input"
-          type="email"
-          value={ email }
-          onChange={ handleEmailChange }
-        />
-      </label>
-      <br />
-      <label className="password-input-label" htmlFor="password-input">
-        Password:
-        <input
-          className="password-input"
-          data-testid="common_register__input-password"
-          id="password-input"
-          type="password"
-          value={ password }
-          onChange={ handlePasswordChange }
-        />
-      </label>
-      <br />
-      <button
-        className="register-button"
-        data-testid="common_register__button-register"
-        onClick={ handleRegister }
-        type="button"
-        disabled={ isRegisterDisabled }
-      >
-        SIGN IN
-      </button>
-      {
-        registerError && (
-          <p
-            data-testid="common_register__element-invalid_register"
-            className="invalid-credentials"
-          >
-            User already exists
-          </p>)
-      }
+    <div>
+      <img className="logo" src={ logo } alt="logomarca" />
+      <div className="register-form">
+        <label className="name-input-label" htmlFor="name-input">
+          Name:
+          <input
+            className="name-input"
+            data-testid="common_register__input-name"
+            id="name-input"
+            type="name"
+            value={ name }
+            onChange={ handleNameChange }
+          />
+        </label>
+        <br />
+        <label className="email-input-label" htmlFor="email-input">
+          Email:
+          <input
+            className="email-input"
+            data-testid="common_register__input-email"
+            id="email-input"
+            type="email"
+            value={ email }
+            onChange={ handleEmailChange }
+          />
+        </label>
+        <br />
+        <label className="password-input-label" htmlFor="password-input">
+          Password:
+          <input
+            className="password-input"
+            data-testid="common_register__input-password"
+            id="password-input"
+            type="password"
+            value={ password }
+            onChange={ handlePasswordChange }
+          />
+        </label>
+        <br />
+        <button
+          className="register-button"
+          data-testid="common_register__button-register"
+          onClick={ handleRegister }
+          type="button"
+          disabled={ isRegisterDisabled }
+        >
+          SIGN IN
+        </button>
+        {
+          registerError && (
+            <p
+              data-testid="common_register__element-invalid_register"
+              className="invalid-credentials"
+            >
+              User already exists
+            </p>)
+        }
+      </div>
     </div>
   );
 }

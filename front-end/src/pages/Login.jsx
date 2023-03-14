@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import logo from '../images/logo-nobg.png';
 import '../styles/Login.css';
 
 function Login() {
@@ -96,59 +97,62 @@ function Login() {
   const isLoginDisabled = !isEmailValid(email) || !isPasswordValid(password);
 
   return (
-    <div className="login-page">
-      <label className="email-input-label" htmlFor="email-input">
-        Login:
-        <input
-          className="email-input"
-          data-testid="common_login__input-email"
-          id="email-input"
-          type="email"
-          placeholder="  email@email.com"
-          value={ email }
-          onChange={ handleEmailChange }
-        />
-      </label>
-      <br />
-      <label className="password-input-label" htmlFor="password-input">
-        Password:
-        <input
-          className="password-input"
-          data-testid="common_login__input-password"
-          id="password-input"
-          type="password"
-          placeholder="  **********"
-          value={ password }
-          onChange={ handlePasswordChange }
-        />
-      </label>
-      <br />
-      <button
-        className="login-button"
-        data-testid="common_login__button-login"
-        onClick={ handleLogin }
-        type="button"
-        disabled={ isLoginDisabled }
-      >
-        LOGIN
-      </button>
-      <button
-        className="signup-button"
-        data-testid="common_login__button-register"
-        onClick={ handleSignup }
-        type="button"
-      >
-        SIGN IN
-      </button>
-      {
-        loginError && (
-          <p
-            data-testid="common_login__element-invalid-email"
-            className="invalid-credentials"
-          >
-            Invalid credentials
-          </p>)
-      }
+    <div>
+      <img className="logom" src={ logo } alt="logomarca" />
+      <div className="login-page">
+        <label className="email-input-label" htmlFor="email-input">
+          Login:
+          <input
+            className="email-input"
+            data-testid="common_login__input-email"
+            id="email-input"
+            type="email"
+            placeholder="  email@email.com"
+            value={ email }
+            onChange={ handleEmailChange }
+          />
+        </label>
+        <br />
+        <label className="password-input-label" htmlFor="password-input">
+          Password:
+          <input
+            className="password-input"
+            data-testid="common_login__input-password"
+            id="password-input"
+            type="password"
+            placeholder="  **********"
+            value={ password }
+            onChange={ handlePasswordChange }
+          />
+        </label>
+        <br />
+        <button
+          className="login-button"
+          data-testid="common_login__button-login"
+          onClick={ handleLogin }
+          type="button"
+          disabled={ isLoginDisabled }
+        >
+          LOGIN
+        </button>
+        <button
+          className="signup-button"
+          data-testid="common_login__button-register"
+          onClick={ handleSignup }
+          type="button"
+        >
+          SIGN IN
+        </button>
+        {
+          loginError && (
+            <p
+              data-testid="common_login__element-invalid-email"
+              className="invalid-credentials"
+            >
+              Invalid credentials
+            </p>)
+        }
+      </div>
     </div>
   );
 }
