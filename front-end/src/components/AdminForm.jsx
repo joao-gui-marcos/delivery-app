@@ -69,7 +69,7 @@ function AdminForm() {
   || !isPasswordValid(password) || !isNameValid(name);
 
   return (
-    <div>
+    <div className="admin-form">
       <label htmlFor="name-input">
         Name:
         <input

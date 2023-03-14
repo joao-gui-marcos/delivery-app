@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Cart from '../entities/cart';
+import '../styles/NavBar.css';
 
 function CustomerNavBar({ name }) {
   const history = useHistory();
@@ -15,12 +16,13 @@ function CustomerNavBar({ name }) {
   };
 
   return (
-    <nav>
+    <nav className="nav-bar">
       <ul>
         {userRole === 'customer'
         && (
-          <li>
+          <li className="products-link">
             <Link
+              className="nav-link"
               data-testid="customer_products__element-navbar-link-products"
               to="/customer/products"
             >
@@ -30,8 +32,9 @@ function CustomerNavBar({ name }) {
         )}
         {userRole !== 'administrator'
         && (
-          <li>
+          <li className="orders-link">
             <Link
+              className="nav-link"
               data-testid="customer_products__element-navbar-link-orders"
               to={ userRole === 'customer' ? '/customer/orders' : '/seller/orders' }
             >
@@ -41,8 +44,9 @@ function CustomerNavBar({ name }) {
         )}
         {userRole === 'administrator'
         && (
-          <li>
+          <li className="users-link">
             <Link
+              className="nav-link"
               data-testid="customer_products__element-navbar-link-products"
               to="/admin/manage"
             >
@@ -50,12 +54,15 @@ function CustomerNavBar({ name }) {
             </Link>
           </li>
         )}
-        <li data-testid="customer_products__element-navbar-user-full-name">
+        <li
+          className="user-name"
+          data-testid="customer_products__element-navbar-user-full-name"
+        >
           Logged in as
           {' '}
           {name}
         </li>
-        <li>
+        <li className="logout-link">
           <button
             data-testid="customer_products__element-navbar-link-logout"
             type="button"

@@ -1,0 +1,96 @@
+.nav-bar {
+  align-items: center;
+  background-color: green;
+  display: flex;
+  height: 50px;
+  margin-bottom: 20px;
+}
+
+.nav-bar ul {
+  text-align: right;
+}
+
+.nav-bar li {
+  display: inline-block;
+  font-family: Trebuchet MS , Lucida Sans Unicode
+    Lucida Grande , Lucida Sans , Arial , sans-serif;
+  margin-left: 15px;
+}
+
+.nav-link {
+  color: black;
+  text-decoration: none;
+}
+
+.products-link {
+  background-color: mediumseagreen;
+  border-radius: 10px;
+  color: white;
+  padding: 10px;
+}
+
+.products-link:hover {
+  background-color: greenyellow;
+  border-radius: 10px;
+  color: white;
+  padding: 10px;
+}
+
+.orders-link {
+  background-color: limegreen;
+  border-radius: 10px;
+  color: white;
+  padding: 10px;
+}
+
+.orders-link:hover {
+  background-color: greenyellow;
+  border-radius: 10px;
+  color: white;
+  padding: 10px;
+}
+
+.user-name {
+  background-color: #4ab54a;
+  border-radius: 10px;
+  color: white;
+  padding: 10px;
+}
+
+.logout-link button {
+  background-color: #036b52;
+  border: none;
+  border-radius: 40px;
+  color: white;
+  cursor: pointer;
+  font-family: Trebuchet MS , Lucida Sans Unicode , Lucida Grande
+    Lucida Sans , Arial , sans-serif;
+  font-size: 18px;
+  padding: 10px 20px;
+}
+
+.logout-link button:hover {
+  background-color: #b12020;
+  border: none;
+  border-radius: 40px;
+  color: white;
+  cursor: pointer;
+  font-family: Trebuchet MS , Lucida Sans Unicode , Lucida Grande
+    Lucida Sans , Arial , sans-serif;
+  font-size: 18px;
+  padding: 10px 20px;
+}
+
+.users-link {
+  background-color: mediumseagreen;
+  border-radius: 10px;
+  color: white;
+  padding: 10px;
+}
+
+.users-link:hover {
+  background-color: greenyellow;
+  border-radius: 10px;
+  color: white;
+  padding: 10px;
+}
